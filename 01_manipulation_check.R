@@ -35,7 +35,6 @@ money <- rowSums(d2[2:43])
 d3 <- dt[c(1, healthstart:healthend)]
 health <- rowSums(d3[2:43])
 
-
 # start from raw data
 raw <- read.csv(here::here('data', 'Time+discounting+across+domains_May+7,+2020_09.54.csv'))
 moneystart <- grep('Q80', colnames(raw))
