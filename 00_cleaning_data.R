@@ -17,8 +17,9 @@ dt$ID <- c(0,0,seq(1,nrow(dt)-2, 1))
 dt$ID <- str_pad(dt$ID, 3, pad="0")
 
 # clean out qualtrics columns
-dt <- dt[-c(1:17)]
-dt <- dt[c(ncol(dt), 1:(ncol(dt)-1))]
+dt <- dt[-c(1:grep('UserLanguage', colnames(dt)))] # get rid of garbage at the front
+dt <- dt[c(ncol(dt), 1:(ncol(dt)-1))] # moves ID column to the front
+dt <- dt[-c(grep('opp', colnames(dt)):ncol(dt))] # get rid of garbage at the back
 
 # create data dictionary
 dd <- t(dt[1,])
