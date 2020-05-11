@@ -1,0 +1,25 @@
+---
+title: "00_Demo_data"
+author: "Kendra Seaman"
+date: "5/11/2020"
+output: html_document
+---
+
+# Temporal Discounting Social Distancing Study 1
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source('../02_graph_demo.R')
+```
+
+## Age distribution
+
+```{r graph age, echo = FALSE}
+ageplot
+```
+
+## Sex distribution
+
+```{r graph sex, echo = FALSE}
+sexplot
+```
