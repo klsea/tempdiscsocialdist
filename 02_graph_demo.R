@@ -16,7 +16,9 @@ dt <- read.csv(here::here("data", "tempdiscsocialdist_Study1_data.csv"))
 
 # histogram of age
 dt$Age <- dt$Q5
-ageplot <- ggplot(dt, aes(Age)) + geom_histogram(stat='count') + theme_minimal()
+ageplot <- ggplot(dt, aes(Age)) + geom_histogram(binwidth= 5, colour = 'black', fill = 'gray') + 
+  scale_x_continuous(breaks=seq(18,88, by=5)) +
+  theme_minimal()
 
 # pie chart of sex
 dt$Sex <- dt$Q3
@@ -61,7 +63,7 @@ dt$Income <- mapvalues(dt$Income, from = c(5, 15, 25, 35, 45, 55, 65, 75, 85, 95
                               '$90,000-$99,999', '$100,000-$109,999', '$110,000-$119,999',
                               '$120,000-$129,999', '$130,000-$139,999', '$140,000-$149,999',
                               '>= $150,000'))
-ggplot(dt, aes(Income)) + geom_histogram(stat='count') + 
+incomeplot <- ggplot(dt, aes(Income)) + geom_histogram(stat='count') + 
   theme_minimal() + theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=12))
 
 

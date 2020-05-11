@@ -23,3 +23,21 @@ ageplot
 ```{r graph sex, echo = FALSE}
 sexplot
 ```
+
+## Education distribution
+
+```{r graph ed, echo = FALSE}
+edplot
+```
+
+## Race distribution
+
+```{r graph race, echo = FALSE}
+raceplot
+```
+
+## income distribution
+
+```{r graph income, echo = FALSE}
+incomeplot
+```
