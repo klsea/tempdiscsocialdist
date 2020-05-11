@@ -63,7 +63,7 @@ dt$Income <- mapvalues(dt$Income, from = c(5, 15, 25, 35, 45, 55, 65, 75, 85, 95
                               '$90,000-$99,999', '$100,000-$109,999', '$110,000-$119,999',
                               '$120,000-$129,999', '$130,000-$139,999', '$140,000-$149,999',
                               '>= $150,000'))
-incomeplot <- ggplot(dt, aes(Income)) + geom_histogram(stat='count') + 
+incomeplot <- ggplot(dt, aes(Income)) + geom_histogram(stat = 'count', colour = 'black', fill = 'gray') + 
   theme_minimal() + theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=12))
 
 
