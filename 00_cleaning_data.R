@@ -29,6 +29,13 @@ colnames(dd) <- c('Variable', 'Question')
 # finish cleaning data file
 dt <- dt[-c(1:2),]
 
+# recode reverse-coded items (2 items were reverse-coded in qualtrics)
+dt$Q101 <- as.numeric(as.character(dt$Q101))
+dt$Q101 <- (dt$Q101 - 1) * - 1 # reverse - 0 become 1 and 1 becomes 0
+
+dt$Q146 <- as.numeric(as.character(dt$Q146))
+dt$Q146 <- (dt$Q146 - 1) * - 1 # reverse - 0 become 1 and 1 becomes 0
+
 # Save 
 write.csv(dd, here::here("data", "tempdiscsocildist_Study1_data_dictionary.csv"), row.names = FALSE)
 write.csv(dt, here::here("data", "tempdiscsocialdist_Study1_data.csv"), row.names = FALSE)
