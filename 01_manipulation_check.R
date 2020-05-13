@@ -10,7 +10,7 @@ library(tidyverse)
 # set hard-coded variables
 
 # load data
-dt <- read.csv(here::here("data", "tempdiscsocialdist_Study1_data.csv"))
+dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
 
 # start and stop values
 socialstart <- grep('Q35', colnames(dt))
