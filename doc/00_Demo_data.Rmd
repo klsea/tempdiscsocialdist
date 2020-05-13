@@ -36,7 +36,7 @@ edplot
 raceplot
 ```
 
-## income distribution
+## Income distribution
 
 ```{r graph income, echo = FALSE}
 incomeplot

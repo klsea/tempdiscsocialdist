@@ -36,27 +36,6 @@ dt$Q101 <- (dt$Q101 - 1) * - 1 # reverse - 0 become 1 and 1 becomes 0
 dt$Q146 <- as.numeric(as.character(dt$Q146))
 dt$Q146 <- (dt$Q146 - 1) * - 1 # reverse - 0 become 1 and 1 becomes 0
 
-# refactor all variables
-factor_cols <- vapply(dt, is.factor, logical(1))
-dt[factor_cols] <- lapply(dt[factor_cols], factor)
-str(dt)
-
-# change variable types for demo questions
-age <- grep('Q5', colnames(dt))
-dt[age] <- sapply(dt[age], as.character)
-dt[age] <- sapply(dt[age], as.integer)
-
-# change variable types for covid questions
-
-# change variable types for td questions
-start_td <- grep('Q35', colnames(dt)) 
-end_td <- grep('Q168', colnames(dt)) 
-dt[start_td:end_td] <- sapply(dt[start_td:end_td], as.character)
-dt[start_td:end_td] <- sapply(dt[start_td:end_td], as.integer)
-
-# add data type to data dictionary
-dd$type <- sapply(dt, class)
-
 # Save 
 write.csv(dd, here::here("data", "tdsd_s1_data_dictionary.csv"), row.names = FALSE)
 write.csv(dt, here::here("data", "tdsd_s1_data.csv"), row.names = FALSE)
