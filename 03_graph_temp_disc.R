@@ -25,4 +25,7 @@ d1$domain <- factor(d1$domain, levels = c('Money', 'Health', 'Social'))
 
 # graph
 ggplot(d1, aes(Age, propChoice, color = domain, fill = domain)) + geom_point() + geom_smooth(method=lm) + 
+  geom_smooth(method = "lm", formula = y ~ x + I(x^2), color = "black", fill = "black") +
   facet_grid(.~ domain) +theme_minimal()
+
+
