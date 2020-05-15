@@ -6,22 +6,15 @@ library(here)
 library(tidyverse)
 library(ggplot2)
 
-# load sources function
+# load source functions
+source(here::here("scr", "td_wide_to_long.R"))
 
 # set hard-coded variables
 
 # load data
 dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
 
-# convert from wide to long format
-d1 <- gather(dt[c(1, 6, grep('SC3', colnames(dt)):grep('SC5', colnames(dt)))], domain, propChoice, SC3:SC5)
-d1$Age <- d1$Q5; d1$Q5 <- NULL
-
-d1$domain[which(d1$domain == 'SC3')] <- 'Money'
-d1$domain[which(d1$domain == 'SC4')] <- 'Health'
-d1$domain[which(d1$domain == 'SC5')] <- 'Social'
-
-d1$domain <- factor(d1$domain, levels = c('Money', 'Health', 'Social'))
+d1 <- td_wide_to_long(dt)
 
 # graph
 ggplot(d1, aes(Age, propChoice, color = domain, fill = domain)) + geom_point() + geom_smooth(method=lm) + 
