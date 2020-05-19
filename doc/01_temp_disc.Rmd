@@ -1,0 +1,134 @@
+---
+title: "TempDisc"
+author: "Kendra Seaman"
+date: "5/19/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(kableExtra)
+```
+
+```{r scripts, include = FALSE}
+source("../03_graph_temp_disc.R")
+source("../04_td_ancova.R")
+source("../05_td_age_by_domain.R")
+```
+
+# Domain (Money x Health x Social) ANCOVA with Age 
+```{r mean graph, echo = FALSE}
+td_means
+```
+
+```{r ancova, echo = FALSE}
+m1$ANOVA %>%
+  kable() %>%
+  kable_styling() %>%
+  row_spec(1:3, bold = T, background = "yellow")
+```
+
+### Sphericity check
+```{r spher, echo = FALSE}
+m1$`Mauchly's Test for Sphericity`%>%
+  kable() %>%
+  kable_styling() %>%
+  row_spec(1:2, bold = T, background = "yellow")
+```
+
+### Sphericity correction
+```{r spher correction, echo = FALSE}
+m1$`Sphericity Corrections` %>%
+  kable() %>%
+  kable_styling() %>%
+  row_spec(1:2, bold = T, background = "yellow")
+```
+
+### Follow-up Test
+```{r followup, echo = FALSE}
+fu %>%
+  kable() %>%
+  kable_styling() %>%
+  row_spec(1:2, bold = T, background = "yellow")
+```
+
+***
+***
+
+# Age effects
+```{r agegraph, echo = FALSE}
+td_x_age
+```
+
+### Money
+
+Model - Age
+```{r money1, echo = FALSE}
+summary(money_models[[1]])$coefficients %>%
+  kable() %>%
+  kable_styling()
+```
+
+Model - Age + Age^2
+```{r money2, echo = FALSE}
+summary(money_models[[3]])$coefficients %>%
+  kable() %>%
+  kable_styling()
+```
+
+No efffect of age on money discounting
+
+### Health 
+
+Model - Age
+```{r health1, echo = FALSE}
+summary(health_models[[1]])$coefficients %>%
+  kable() %>%
+  kable_styling() %>%
+  row_spec(2, bold = T, background = "yellow")
+```
+
+Model - Age + Age^2
+```{r health2, echo = FALSE}
+summary(health_models[[3]])$coefficients %>%
+  kable() %>%
+  kable_styling() %>%
+  row_spec(2, bold = T, background = "yellow")
+```
+
+Model comparison
+```{r health3, echo = FALSE}
+anova(health_models[[1]], health_models[[3]]) %>% 
+  kable() %>%
+  kable_styling
+```
+
+Significant linear effect of age on health discounting, with older adults discounting more than younger adults.
+
+### Social
+
+Model - Age
+```{r social1, echo = FALSE}
+summary(social_models[[1]])$coefficients %>%
+  kable() %>%
+  kable_styling() %>%
+  row_spec(2, bold = T, background = "yellow")
+```
+
+Model - Age + Age^2
+```{r social2, echo = FALSE}
+summary(social_models[[3]])$coefficients %>%
+  kable() %>%
+  kable_styling() %>%
+  row_spec(2:3, bold = T, background = "yellow")
+```
+
+Model comparison
+```{r social3, echo = FALSE}
+anova(social_models[[1]], social_models[[3]]) %>% 
+  kable() %>%
+  kable_styling %>%
+  row_spec(2, bold = T, background = "yellow")
+```
+
+Significant linear and quadratic effects of age on social discounting, with older adults discounting more than younger adults and middle aged adults discounting more than younger or older adults
