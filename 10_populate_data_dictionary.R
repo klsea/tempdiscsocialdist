@@ -19,8 +19,8 @@ dd <- read.csv(here::here("data", 'tdsd_s1_data_dictionary.csv'))
 dd[,'variable_name'] <- NA
 
 dd$variable_name[1:9] <- c("ID", "NeuroHealth", "PsychHealth", "Sex", "Education", "Age", "Race", "Income", "Employment")
+dd$variable_name[11:13] <- c("covid_pos", "covid_prev", "covid_symp")
 
-# add name to covid variables
 
 #add names to td
 socialstart <- grep('Q35', dd$Variable)
@@ -53,6 +53,8 @@ dd$allowed_values[grep('Q3', dd$Variable)] <- '0 = Male, 1 = Female'
 # finish this later
 
 # covid question
+dd$allowed_values[11:12] <- '1 = No, 2 = Yes have symptoms, but not confirmed with test, 3 = Yes, confirmed with test'
+dd$allowed_values[13] <- '1 = No, 2 = Some symptoms, 3 = All symptoms'
 
 # catch trials
 dd$allowed_values[grep('Q77', dd$Variable)] <- 0
