@@ -19,8 +19,12 @@ dd <- read.csv(here::here("data", 'tdsd_s1_data_dictionary.csv'))
 dd[,'variable_name'] <- NA
 
 dd$variable_name[1:9] <- c("ID", "NeuroHealth", "PsychHealth", "Sex", "Education", "Age", "Race", "Income", "Employment")
-dd$variable_name[11:13] <- c("covid_pos", "covid_prev", "covid_symp")
-
+# blank
+dd$variable_name[11:15] <- c("covid_pos", "covid_prev", "covid_symp", "work", "leave_home")
+# blanks
+dd$variable_name[18] <- 'visitors'
+# blanks
+dd$variable_name[39:41] <-c('catch_covid', 'worried_covid', 'covid_outcome')
 
 #add names to td
 socialstart <- grep('Q35', dd$Variable)
@@ -47,7 +51,7 @@ dd$type <- sapply(dt, class)
 dd[,'allowed_values'] <- NA 
 
 # demo data
-dd$allowed_values[grep('ID'), dd$Variable] <- '001-233'
+dd$allowed_values[grep('ID', dd$Variable)] <- '001-233'
 dd$allowed_values[grep('Q3', dd$Variable)] <- '0 = Male, 1 = Female'
 
 # finish this later
@@ -55,6 +59,19 @@ dd$allowed_values[grep('Q3', dd$Variable)] <- '0 = Male, 1 = Female'
 # covid question
 dd$allowed_values[11:12] <- '0 = No, 1 = Yes have symptoms, but not confirmed with test, 2 = Yes, confirmed with test'
 dd$allowed_values[13] <- '1 = No, 2 = Some symptoms, 3 = All symptoms'
+dd$allowd_values[14] <- '0 = No, 1 = Yes'
+dd$allowed_values[15] <- "0 - No one visited my home in the past week (0 days), 
+1 = 1 day, 2 = 2 days, 3 = 3 days, 4 = 4 days, 5 = 5 days, 6 = 6 days, 7 = Every day (7 days)"
+# breaks
+dd$allowed_values[24] <- "0 - Never left house or only went somewhere I didn't encounter other people (0 days), 
+1 = 1 day, 2 = 2 days, 3 = 3 days, 4 = 4 days, 5 = 5 days, 6 = 6 days, 7 = Every day (7 days)"
+# breaks
+dd$allowed_values[39] <- "0 = Extremely unlikely, 17 = Moderately unlikely, 34 = Slightly unlikely, 
+50 = Neither likely nor unlikely, 67 = Slightly likely, 84 = Moderately likely, 100 = Extremely likely"
+dd$allowed_values[40] <- "0 = Not worried at all, 25 = A little worried, 50 = Moderately worried, 75 = Quite worried, 100 = Exteremely woried"
+dd$allowed_values[41] <- "1 = Recover without serious symptoms or complications (like a typical flu), 
+2 = Have serious symptoms (more than a typical flu) but recover at home, 3 = Have to be hospitalized, 
+4 = Would not survive"
 
 # catch trials
 dd$allowed_values[grep('Q77', dd$Variable)] <- 0
@@ -67,4 +84,6 @@ dd$allowed_values[grep('Q168', dd$Variable)] <- 1
 # td data
 dd$allowed_values[c(socialstart:socialend, moneystart:moneyend, healthstart:healthend)] <- '0 = larger later, 1 = smaller sooner'
 
+# save file
+#write.csv(dd, home::home('data', 'tdsd_s1_data_dictionary.csv'))
 
