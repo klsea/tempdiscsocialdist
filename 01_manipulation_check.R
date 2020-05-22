@@ -28,3 +28,16 @@ d1 <- dt %>%
          moneycompare = moneycheck - SC3, 
          healthcompare = healthcheck - SC4)
 
+d2 <- dt[c(1, 16)] %>% separate(Q15, as.character(1:12))
+colnames(d2) <- c('ID', paste0('C', colnames(d2[2:13])))
+
+d2 %>% 
+  mutate_at(vars(paste0("C", 1:12)), 
+            funs(recode(., '1' = '-3', '2' = '0', '3' = '1',  '4' = '1', '5' = '1', 
+                        '6' = '1', '7' = '1', '8' = '1', '9' = '1', '10' = '1', '11' = '1', '12' = '0'))) %>%
+  mutate_at(vars(paste0("C", 1:12)), as.numeric) %>%
+  mutate(sum = rowSums(.[2:13], na.rm = TRUE))
+
+
+
+
