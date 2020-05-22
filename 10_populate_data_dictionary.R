@@ -44,6 +44,9 @@ dd$variable_name[socialstart:socialend] <- paste0(rep('Social_', 42), str_pad(se
 dd$variable_name[moneystart:moneyend] <- paste0(rep('Money_', 42), str_pad(seq(1,42,1), 2, pad="0"))
 dd$variable_name[healthstart:healthend] <- paste0(rep('health_', 42), str_pad(seq(1,42,1), 2, pad="0"))
 dd$variable_name[catch] <- paste0(rep('catch_',6), seq(1,6,1))
+dd$variable_name[grep('SC0', dd$Variable)] <- 'socialDistBehavior' # Q15
+dd$variable_name[grep('SC1', dd$Variable)] <- 'mentalHealthSymptoms' # Q26
+dd$variable_name[grep('SC2', dd$Variable)] <- 'cautiosBehVisitors' # Q19
 dd$variable_name[grep('SC3', dd$Variable)] <- 'propSSmoney'
 dd$variable_name[grep('SC4', dd$Variable)] <- 'propSShealth'
 dd$variable_name[grep('SC5', dd$Variable)] <- 'propSSsocial'
@@ -96,6 +99,9 @@ dd$allowed_values[40] <- "0 = Not worried at all, 25 = A little worried, 50 = Mo
 dd$allowed_values[41] <- "1 = Recover without serious symptoms or complications (like a typical flu), 
 2 = Have serious symptoms (more than a typical flu) but recover at home, 3 = Have to be hospitalized, 
 4 = Would not survive"
+dd$allowed_values[c(186, 188)] <- '-3 to 10'
+dd$allowed_values[187] <- '0-19'
+dd$allowed_values[188:190] <- '0-42'
 
 # catch trials
 dd$allowed_values[grep('Q77', dd$Variable)] <- 0
