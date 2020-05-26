@@ -4,6 +4,7 @@
 # load required packages
 library(here)
 library(tidyverse)
+library(Hmisc)
 
 # load source functions
 source(here::here("scr", "CIcorr.R"))
@@ -16,5 +17,13 @@ dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
 dd <- read.csv(here::here("data", 'tdsd_s1_data_dictionary.csv'), stringsAsFactors=FALSE)
 
 # correlation table for social distancing variables
+# formula removes all people with NA values, so analyze Q16, Q20 & Q22 separately
+                            
+table1 <- corrTableCI(dt[c(6, 11:15, 24, 39:41, 186:188)])
 
-table <- corrTableCI(dt[c(6, 11:15, 17:22, 186)])
+table2 <- corrTableCI(dt[c(6, 17:22)])
+
+table3 <- corrTableCI(dt[c(6, 26:31)])
+
+table4 <- corrTableCI(dt[c(6, 33:37)])
+

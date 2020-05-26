@@ -185,6 +185,9 @@ color <- factor(dt$Q23_1)
 p1 <- ggplot(dt, aes(Q5, Q23_1))
 p2 <- ggplot(dt, aes(Q23_1, fill = color))
 covid4 <- fancy_graph(p1, p2, "How likely do you think you are to catch Covid19?", color)
+saveRDS(p1, here::here('output', 'cc1.RDS'))
+saveRDS(p2, here::here('output', 'cc2.RDS'))
+
 
 color <- factor(dt$Q24_1)
 p1 <- ggplot(dt, aes(Q5, Q24_1))
@@ -195,6 +198,8 @@ color <- factor(dt$Q25)
 p1 <- ggplot(dt, aes(Q5, Q25))
 p2 <- ggplot(dt, aes(Q25, fill = color))
 covid6 <- fancy_graph(p1, p2, "What is the most likely outcome if you caught Covid-19", color)
+saveRDS(p1, here::here('output', 'co1.RDS'))
+saveRDS(p2, here::here('output', 'co2.RDS'))
 
 # mental health
 
@@ -202,3 +207,7 @@ color <- factor(dt$SC1)
 p1 <- ggplot(dt, aes(Q5, SC1)) 
 p2 <- ggplot(dt, aes(SC1, fill = color))
 mentalhealth <- fancy_graph(p1, p2, dd$variable_name[grep('SC1', dd$Variable)], color)
+saveRDS(p1, here::here('output', 'mh1.RDS'))
+saveRDS(p2, here::here('output', 'mh2.RDS'))
+
+rm(p1, p2)

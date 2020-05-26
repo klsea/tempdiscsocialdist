@@ -1,0 +1,62 @@
+---
+title: "Social Dist and Age"
+author: "Kendra Seaman"
+date: "5/26/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(kableExtra)
+```
+
+```{r scripts, include = FALSE}
+source("../07_social_dist_correlations.R")
+source("../scr/multiplot.R")
+
+fancy_graph <- function(plot1, plot2, ylabel, color_var) {
+  g1 <- plot1 + geom_jitter(aes(color = color_var)) + geom_smooth(method=lm, color = "black") +
+    theme_minimal() + theme(legend.position = 'none') +
+    ylab(ylabel) + xlab("Age")
+  g2 <- plot2 + geom_histogram(stat='count') + coord_flip() + 
+    theme_minimal() + theme(legend.position = 'none', axis.title.y = element_blank(), 
+                            axis.text.y = element_blank()) + xlab('Count') 
+  multiplot(g1,g2, cols = 2)
+}
+```
+
+```{r correlations, echo = FALSE}
+table1[1:2] %>%
+  kable() %>%
+  kable_styling() %>%
+  row_spec(c(8, 10, 12), bold = T, background = "yellow")
+```
+
+Q23_1 = `r dd$Question[grep('Q23_1', dd$Variable)]`
+
+```{r likely covid, echo = FALSE, warnings = FALSE}
+color <- factor(dt$Q23_1)
+p1 <- readRDS("../output/cc1.RDS")
+p2 <- readRDS("../output/cc2.RDS")
+fancy_graph(p1, p2, dd$variable_name[grep('Q23_1', dd$Variable)], color)
+```
+
+Q25 = `r dd$Question[grep('Q25', dd$Variable)]`
+
+```{r covid outcome, echo = FALSE, warning = FALSE}
+color <- factor(dt$Q25)
+p1 <- readRDS("../output/co1.RDS")
+p2 <- readRDS("../output/co2.RDS")
+fancy_graph(p1, p2, dd$variable_name[grep('Q25', dd$Variable)], color)
+```
+
+`r dd$allowed_values[grep('Q25', dd$Variable)]`
+
+SC1 = `r dd$Question[grep('Q26', dd$Variable)]` 
+
+```{r mental health, echo = FALSE, warning = FALSE}
+color <- factor(dt$SC1)
+p1 <- readRDS("../output/mh1.RDS")
+p2 <- readRDS("../output/mh2.RDS")
+fancy_graph(p1, p2, dd$variable_name[grep('SC1', dd$Variable)], color)
+```
