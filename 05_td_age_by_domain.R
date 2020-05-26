@@ -4,6 +4,7 @@
 # load required packages
 library(here)
 library(tidyverse)
+library(sjPlot)
 
 # load source functions
 source(here::here("scr", "td_wide_to_long.R"))
@@ -19,6 +20,7 @@ d1 <- td_wide_to_long(dt)
 # Scale Age
 d1$Age <- scale(d1$Age)
 d1$Age2 <- d1$Age^2
+d1$propChoice <- scale(d1$propChoice) # scale so standardized coefficients in output
 
 # regressions
 models <- function(data) {
@@ -55,3 +57,6 @@ summary(social_models[[3]])
 anova(social_models[[1]], social_models[[3]])
 anova(health_models[[2]], health_models[[3]])
 # M3 wins
+
+tab_model(money_models[[1]], money_models[[3]], health_models[[1]], health_models[[3]], social_models[[1]], social_models[[3]], 
+          dv.labels = c("Money 1", "Money 2", "Health 1", "Health 2", "Social 1", "Social 2"))
