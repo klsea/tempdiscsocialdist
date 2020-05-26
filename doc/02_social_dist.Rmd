@@ -1,5 +1,5 @@
 ---
-title: "Social Dist and Age"
+title: "Social Distance and Age"
 author: "Kendra Seaman"
 date: "5/26/2020"
 output: html_document
@@ -25,7 +25,7 @@ fancy_graph <- function(plot1, plot2, ylabel, color_var) {
 }
 ```
 
-```{r correlations, echo = FALSE}
+```{r correlations, echo = FALSE, warnings = FALSE}
 table1[1:2] %>%
   kable() %>%
   kable_styling() %>%
@@ -43,14 +43,14 @@ fancy_graph(p1, p2, dd$variable_name[grep('Q23_1', dd$Variable)], color)
 
 Q25 = `r dd$Question[grep('Q25', dd$Variable)]`
 
+`r dd$allowed_values[grep('Q25', dd$Variable)]`
+
 ```{r covid outcome, echo = FALSE, warning = FALSE}
 color <- factor(dt$Q25)
 p1 <- readRDS("../output/co1.RDS")
 p2 <- readRDS("../output/co2.RDS")
 fancy_graph(p1, p2, dd$variable_name[grep('Q25', dd$Variable)], color)
 ```
-
-`r dd$allowed_values[grep('Q25', dd$Variable)]`
 
 SC1 = `r dd$Question[grep('Q26', dd$Variable)]` 
 
@@ -59,4 +59,97 @@ color <- factor(dt$SC1)
 p1 <- readRDS("../output/mh1.RDS")
 p2 <- readRDS("../output/mh2.RDS")
 fancy_graph(p1, p2, dd$variable_name[grep('SC1', dd$Variable)], color)
+```
+
+```{r correlations2, echo = FALSE, warnings = FALSE}
+table2[1:2] %>%
+  kable() %>%
+  kable_styling() %>%
+  row_spec(c(2,3,6), bold = T, background = "yellow")
+```
+
+Q16_1 = `r dd$Question[grep('Q16_1', dd$Variable)]` 
+lower scores = higher rank
+
+```{r work, echo = FALSE, warning = FALSE}
+color <- factor(dt$Q16_1)
+p1 <- readRDS("../output/work1.RDS")
+p2 <- readRDS("../output/work2.RDS")
+fancy_graph(p1, p2, dd$variable_name[grep('Q16_1', dd$Variable)], color)
+```
+
+Q16_2 = `r dd$Question[grep('Q16_2', dd$Variable)]` 
+lower scores = higher rank
+
+```{r essential, echo = FALSE, warning = FALSE}
+color <- factor(dt$Q16_2)
+p1 <- readRDS("../output/ei1.RDS")
+p2 <- readRDS("../output/ei2.RDS")
+fancy_graph(p1, p2, dd$variable_name[grep('Q16_2', dd$Variable)], color)
+```
+
+Q16_5 = `r dd$Question[grep('Q16_5', dd$Variable)]` 
+lower scores = higher rank
+
+```{r community, echo = FALSE, warning = FALSE}
+color <- factor(dt$Q16_5)
+p1 <- readRDS("../output/com1.RDS")
+p2 <- readRDS("../output/com2.RDS")
+fancy_graph(p1, p2, dd$variable_name[grep('Q16_5', dd$Variable)], color)
+```
+
+```{r correlations3, echo = FALSE, warnings = FALSE}
+table3[1:2] %>%
+  kable() %>%
+  kable_styling() %>%
+  row_spec(c(2,7), bold = T, background = "yellow")
+```
+
+
+Q20_1 = `r dd$Question[grep('Q20_1', dd$Variable)]` 
+(lower scores = higher rank)
+
+```{r work2, echo = FALSE, warning = FALSE}
+color <- factor(dt$Q20_1)
+p1 <- readRDS("../output/vw1.RDS")
+p2 <- readRDS("../output/vw2.RDS")
+fancy_graph(p1, p2, dd$variable_name[grep('Q20_1', dd$Variable)], color)
+```
+
+Q20_6 = `r dd$Question[grep('Q20_6', dd$Variable)]` 
+(lower scores = higher rank)
+
+```{r care, echo = FALSE, warning = FALSE}
+color <- factor(dt$Q20_6)
+p1 <- readRDS("../output/ec1.RDS")
+p2 <- readRDS("../output/ec2.RDS")
+fancy_graph(p1, p2, dd$variable_name[grep('Q20_6', dd$Variable)], color)
+```
+
+```{r correlations4, echo = FALSE, warnings = FALSE}
+table4[1:2] %>%
+  kable() %>%
+  kable_styling() %>%
+  row_spec(c(2,3), bold = T, background = "yellow")
+```
+
+Q22_1 = `r dd$Question[grep('Q22_1', dd$Variable)]` 
+(lower scores = higher rank)
+
+```{r self, echo = FALSE, warning = FALSE}
+color <- factor(dt$Q22_1)
+p1 <- readRDS("../output/sh1.RDS")
+p2 <- readRDS("../output/sh2.RDS")
+fancy_graph(p1, p2, dd$variable_name[grep('Q22_1', dd$Variable)], color)
+```
+
+
+Q22_2 = `r dd$Question[grep('Q22_2', dd$Variable)]` 
+(lower scores = higher rank)
+
+```{r famliy, echo = FALSE, warning = FALSE}
+color <- factor(dt$Q22_2)
+p1 <- readRDS("../output/fh1.RDS")
+p2 <- readRDS("../output/fh2.RDS")
+fancy_graph(p1, p2, dd$variable_name[grep('Q22_2', dd$Variable)], color)
 ```
