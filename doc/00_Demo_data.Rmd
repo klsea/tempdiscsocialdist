@@ -9,7 +9,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-source('../02_graph_demo.R')
+source('../03_graph_demo.R')
 ```
 
 ## Age distribution

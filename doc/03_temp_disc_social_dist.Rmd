@@ -11,7 +11,7 @@ library(kableExtra)
 ```
 
 ```{r scripts, include = FALSE}
-source("../07_social_dist_correlations.R")
+source("../08_social_dist_correlations.R")
 ```
 
 # Monetary discounting (SC3)

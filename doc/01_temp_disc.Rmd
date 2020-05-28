@@ -11,9 +11,9 @@ library(kableExtra)
 ```
 
 ```{r scripts, include = FALSE}
-source("../03_graph_temp_disc.R")
-source("../04_td_ancova.R")
-source("../05_td_age_by_domain.R")
+source("../04_graph_temp_disc.R")
+source("../05_td_ancova.R")
+source("../06_td_age_by_domain.R")
 ```
 
 # Domain (Money x Health x Social) ANCOVA with Age 
@@ -76,7 +76,12 @@ summary(money_models[[3]])$coefficients %>%
   kable_styling()
 ```
 
-No efffect of age on money discounting
+No efffect of age on money discounting.
+
+# What is this money used for?
+```{r money3, echo = FALSE}
+moneyuseplot
+```
 
 ### Health 
 
@@ -132,3 +137,8 @@ anova(social_models[[1]], social_models[[3]]) %>%
 ```
 
 Significant linear and quadratic effects of age on social discounting, with older adults discounting more than younger adults and middle aged adults discounting more than younger or older adults
+
+# Who are the social partners?
+```{r social4, echo = FALSE}
+partplot
+```
