@@ -41,3 +41,15 @@ raceplot
 ```{r graph income, echo = FALSE}
 incomeplot
 ```
+
+
+## Employment distribution
+
+```{r graph employ, echo = FALSE}
+employplot
+```
+
+## Class distribution
+```{r graph class, echo = FALSE}
+classplot
+```

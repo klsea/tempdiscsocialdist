@@ -156,7 +156,7 @@ table2[c(2:7), c(1,12)] %>%
 
 Q16_5 = `r dd$Question[grep('Q16_5', dd$Variable)]`  
 
-**People with a larger difference between social and health discount rates are less likely to highly rank leaving for community service.**
+**People with a larger difference between social and health discount rates are more likely to highly rank leaving for community service.**
 
 ```{r diff3, echo = FALSE, warnings = FALSE}
 table3[c(2:7), c(1,12)] %>%

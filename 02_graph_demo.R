@@ -63,9 +63,33 @@ dt$Income <- mapvalues(dt$Income, from = c(5, 15, 25, 35, 45, 55, 65, 75, 85, 95
                               '$90,000-$99,999', '$100,000-$109,999', '$110,000-$119,999',
                               '$120,000-$129,999', '$130,000-$139,999', '$140,000-$149,999',
                               '>= $150,000'))
+dt$Income <- ordered(dt$Income, levels = c('< $10,000', '$10,000-$19,999', '$20,000-$29,999', 
+                                           '30,000-$39,999', '$40,000-$49,999','$50,000-$59,999', 
+                                           '$60,000-$69,999', '$70,000-$79,999', '$80,000-$89,999', 
+                                           '$90,000-$99,999', '$100,000-$109,999', '$110,000-$119,999',
+                                           '$120,000-$129,999', '$130,000-$139,999', '$140,000-$149,999',
+                                           '>= $150,000'))
 incomeplot <- ggplot(dt, aes(Income)) + geom_histogram(stat = 'count', colour = 'black', fill = 'gray') + 
   theme_minimal() + theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=12))
 
+# pie chart employment
+dt$Employment <- dt$Q8
+dt$Employment <- mapvalues(dt$Employment, from = seq(1,8.1), to = c( 'Yes, has paid employment: Full time employee (30 hours a week or more)', 
+'Yes, has paid employment: Part time employee (less than 30 hours a week)', 'Self-employeed', 'No, no paid employment: Retired/pension', 
+'No, no paid employment: Homemaker not otherwise employed', 'No, no paid employment: Student', 'No, no paid employment: Unemployed', 
+'No paid employment for now: Unemployed now but will have job after virus'))
+employ_freq <- count(dt$Employment) # count racial distribution in new table
+employ_freq$Employment <- employ_freq$x
+employplot <- ggplot(employ_freq, aes(x='', y=freq, fill = Employment)) + geom_bar(stat = 'identity', width = 1) +
+  coord_polar("y", start = 0) + theme_void()
+rm(race_freq)
 
-
-
+# histogram class
+dt$Class <- dt$Q9
+dt$Class <- mapvalues(dt$Class, from = seq(1,6,1), to = c('Lower class','Working class', 'Lower middle class', 'Middle class', 
+                                                          'Upper middle class', 'Upper class'))
+dt$Class <- ordered(dt$Class, levels = c('Lower class','Working class', 'Lower middle class', 'Middle class', 
+                                         'Upper middle class', 'Upper class'))
+classplot <- ggplot(dt, aes(Class)) + geom_histogram(stat = 'count', colour = 'black', fill = 'gray') + 
+  theme_minimal() + theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=12))
+classplot

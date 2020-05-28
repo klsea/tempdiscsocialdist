@@ -59,14 +59,44 @@ dd[,'allowed_values'] <- NA
 
 # demo data
 dd$allowed_values[grep('ID', dd$Variable)] <- '001-233'
+dd$allowed_values[c(2:3, 14)] <- '0 = No, 1 = Yes'
 dd$allowed_values[grep('Q3', dd$Variable)] <- '0 = Male, 1 = Female'
+dd$allowed_values[grep('Q4', dd$Variable)] <- "5 = Middle School, 12 = High School Diploma, 14 = Some College, 16 = Bachelor's Degree, 
+18 = Master's Degree, 21 = Doctoral Degree"
+dd$allowed_values[grep('Q5', dd$Variable)] <- '18-86'
+dd$allowed_values[grep('Q6', dd$Variable)] <- '1 = White/Caucasian, 2 = Black/African American, 4 = Hispanic/Latino'
+dd$allowed_values[grep('Q7', dd$Variable)] <- '5 = less than $10,000, 
+15 = $10,000-$19,999, 
+25 = $20,000-$29,999, 
+35 = $30,000-$39,999, 
+45 = $40,000-$49,999, 
+55 = $50,000-$59,999, 
+65= $60,000-$69,999, 
+75 = $70,000-$79,999, 
+85= $80,000-$89,999, 
+95= $90,000-$99,999, 
+105 = $100,000-$109,999, 
+115 = $110,000-$119,999, 
+125 = $120,000-$129,999, 
+135 = $130,000-$139,999, 
+145 = $140,000-$149,999, 
+155 = $150,000 or more'
+dd$allowed_values[grep('Q8', dd$Variable)] <- '1 = Yes, has paid employment: Full time employee (30 hours a week or more), 
+2 = Yes, has paid employment: Part time employee (less than 30 hours a week), 
+3 = Self-employeed, 
+4 = No, no paid employment: Retired/pension, 
+5 = No, no paid employment: Homemaker not otherwise employed, 
+6 = No, no paid employment: Student, 
+7 = No, no paid employment: Unemployed, 
+8 = No paid employment for now: Unemployed now but will have job after virus'
+dd$allowed_values[grep('Q9', dd$Variable)] <- '1 = Lower class, 2 = Working class, 3 = Lower middle class, 4 = Middle class, 
+5 = Upper middle class, 6 = Upper class'
 
 # finish this later
 
 # covid question
 dd$allowed_values[11:12] <- '0 = No, 1 = Yes have symptoms, but not confirmed with test, 2 = Yes, confirmed with test'
 dd$allowed_values[13] <- '1 = No, 2 = Some symptoms, 3 = All symptoms'
-dd$allowed_values[14] <- '0 = No, 1 = Yes'
 dd$allowed_values[15] <- "0 - No one visited my home in the past week (0 days), 
 1 = 1 day, 2 = 2 days, 3 = 3 days, 4 = 4 days, 5 = 5 days, 6 = 6 days, 7 = Every day (7 days)"
 dd$allowed_values[16] <- "1 = Make physical contact with other people (handshake, hug, etc),
