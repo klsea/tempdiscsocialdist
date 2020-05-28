@@ -78,9 +78,14 @@ summary(money_models[[3]])$coefficients %>%
 
 No efffect of age on money discounting.
 
-# What is this money used for?
 ```{r money3, echo = FALSE}
 moneyuseplot
+```
+
+Q2169_1 = `r dd$Question[grep('Q169_1', dd$Variable)]` 
+
+```{r money4, echo = FALSE}
+moneyimportplot
 ```
 
 ### Health 
@@ -109,6 +114,12 @@ anova(health_models[[1]], health_models[[3]]) %>%
 ```
 
 Significant linear effect of age on health discounting, with older adults discounting more than younger adults.
+
+Q2169_2 = `r dd$Question[grep('Q169_2', dd$Variable)]` 
+
+```{r health4, echo = FALSE}
+healthimportplot
+```
 
 ### Social
 
@@ -142,3 +153,10 @@ Significant linear and quadratic effects of age on social discounting, with olde
 ```{r social4, echo = FALSE}
 partplot
 ```
+
+Q2169_3 = `r dd$Question[grep('Q169_3', dd$Variable)]` 
+
+```{r social5, echo = FALSE}
+socialimportplot
+```
+

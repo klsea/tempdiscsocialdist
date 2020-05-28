@@ -67,3 +67,27 @@ d3$expense <- ordered(d3$expense, levels = c('Bills / essential items',
 moneyuseplot <- ggplot(d3, aes(expense, count, fill = expense)) + geom_bar(stat = 'identity') + theme_minimal() + 
   theme(legend.position='none', axis.text.x  = element_text(angle=90, vjust=0.5, size = 10))
 moneyuseplot
+
+# importance of money, social, health
+dt$moneyimport <- dt$Q169_1
+dt$socialimport <- dt$Q169_2
+dt$healthimport <- dt$Q169_3
+dt$Age <- dt$Q5
+
+library(scales)
+show_col(hue_pal()(3))
+
+moneyimportplot <- ggplot(dt, aes(Age, moneyimport)) + geom_point(color = "#F8766D") + 
+  geom_smooth(method = lm, color = "#F8766D", fill = "#F8766D") + theme_minimal() + theme(legend.position = 'none') + ylab('') + 
+  annotate(geom = 'text', x = 80 , y = 0, label = "Not important") +  annotate(geom = 'text', x = 75 , y = 100, label = "Extremely important") 
+moneyimportplot
+
+socialimportplot <- ggplot(dt, aes(Age, socialimport)) + geom_point(color = "#619CFF") + 
+  geom_smooth(method = lm, fill = "#619CFF", color = "#619CFF") + theme_minimal() + theme(legend.position = 'none') + ylab('') + 
+  annotate(geom = 'text', x = 80 , y = 0, label = "Not important") +  annotate(geom = 'text', x = 75 , y = 100, label = "Extremely important") 
+socialimportplot
+
+healthimportplot <- ggplot(dt, aes(Age, healthimport)) + geom_point(color = "#00BA38") + 
+  geom_smooth(method = lm, color = "#00BA38", fill = "#00BA38") + theme_minimal() + theme(legend.position = 'none') + ylab('') + 
+  annotate(geom = 'text', x = 80 , y = 0, label = "Not important") +  annotate(geom = 'text', x = 75 , y = 100, label = "Extremely important")  
+healthimportplot
