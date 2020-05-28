@@ -26,7 +26,7 @@ fancy_graph <- function(plot1, plot2, ylabel, color_var) {
 ```
 
 ```{r correlations, echo = FALSE, warnings = FALSE}
-table1[1:2] %>%
+table1[1:13, 1:2] %>%
   kable() %>%
   kable_styling() %>%
   row_spec(c(8, 10, 12), bold = T, background = "yellow")
