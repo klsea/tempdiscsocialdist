@@ -28,7 +28,11 @@ dd$variable_name[26:32] <- c('dowork', 'deliveressentials', 'socialcontact', 'ch
                              'community', 'providecare', 'otherreasonsvisit')
 dd$variable_name[33:38] <-c('selfhealth', 'familyhealth', 'limitspread', '4someoneelse', 
                             'otherdistance', 'otherdisttext')
-dd$variable_name[39:41] <-c('catch_covid', 'worried_covid', 'covid_outcome')
+dd$variable_name[39:42] <-c('catch_covid', 'worried_covid', 'covid_outcome', 'mental_health')
+dd$variable_name[43:45] <- c('imagine_weeks', 'imagine_months', 'imagine_years')
+dd$variable_name[46:48] <- c('comprehension_check', 'social_partner', 'social_motivation')
+dd$variable_name[181:183] <- c('import_money', 'import_social', 'import_health')
+dd$variable_name[184:185] <- c('spend_money', 'spend_money_other')
 
 #add names to td
 socialstart <- grep('Q35', dd$Variable)
@@ -92,9 +96,7 @@ dd$allowed_values[grep('Q8', dd$Variable)] <- '1 = Yes, has paid employment: Ful
 dd$allowed_values[grep('Q9', dd$Variable)] <- '1 = Lower class, 2 = Working class, 3 = Lower middle class, 4 = Middle class, 
 5 = Upper middle class, 6 = Upper class'
 
-# finish this later
-
-# covid question
+# covid questions
 dd$allowed_values[11:12] <- '0 = No, 1 = Yes have symptoms, but not confirmed with test, 2 = Yes, confirmed with test'
 dd$allowed_values[13] <- '1 = No, 2 = Some symptoms, 3 = All symptoms'
 dd$allowed_values[15] <- "0 - No one visited my home in the past week (0 days), 
@@ -129,9 +131,27 @@ dd$allowed_values[40] <- "0 = Not worried at all, 25 = A little worried, 50 = Mo
 dd$allowed_values[41] <- "1 = Recover without serious symptoms or complications (like a typical flu), 
 2 = Have serious symptoms (more than a typical flu) but recover at home, 3 = Have to be hospitalized, 
 4 = Would not survive"
+dd$allowed_values[42] <- "1 = Anxiety/worry, 2 = Sadness/depression, 3 = Loss of sleep, 4 = Loss of appetite, 5 = Lack of motivation, 
+6 = Loss of interest in things you normally enjoy, 7 = Difficulty concentrating, 8 = Stress, 9 = Communicate less often with family/friends, 
+10 = Obsessive cleaning, 11 = Can't stop consuming media (news, social media, etc) related to the virus, 12 = Obsessively checking in on family and friends, 
+13 = Obsessively checking your own temperature or physical symptoms, 14 = Loneliness, 15 = Low self worth, 16 = Irritability, 17 = Anger, 
+18 = Aggressive behavior, 19 = Head aches, stomach aches, or muscle tension, 20 = None of the above"
+dd$allowed_values[43:45] <- '0-100; 0 = Not well at all, 25 = Slightly well, 50 = Moderately well, 75 = Very well, 100 = Extremely well' 
+dd$allowed_values[46] <- '2 = Health improvement, Social contact, Money'
+dd$allowed_values[47] <- '1 = My spouse or significant other, 2 = My child, 3 = My parent, 4 = My grandparent or other relative, 7 = My close friend, 
+8 = A new friend, 9 = My co-worker'
+dd$allowed_values[48] <- '0-100; 0 = Not at all, 25 = Somewhat, 50 = Very, 75 = Moderately, 100 = Extremely'
+dd$allowed_values[181:183] <- '0-100; 0 = Not important, 25 = Slightly important, 50 = Moderately important, 75 = Very important, 100 = Extremely important'
+dd$allowed_values[184] <- '1 = Paying bills / buying essential personal items (groceries, gas, essential household items, 
+2 = Buying something non-essential or spending it on an experience for myself, 
+3 = Buying something for someone else, 
+4 = Giving the money to someone else, 
+5 = Spending it on an experience I would share with someone else, 
+6 = Other'
+dd$allowed_values[185] <- 'text'
 dd$allowed_values[c(186, 188)] <- '-3 to 10'
 dd$allowed_values[187] <- '0-19'
-dd$allowed_values[188:190] <- '0-42'
+dd$allowed_values[189:191] <- '0-42'
 
 # catch trials
 dd$allowed_values[grep('Q77', dd$Variable)] <- 0
@@ -145,5 +165,5 @@ dd$allowed_values[grep('Q168', dd$Variable)] <- 1
 dd$allowed_values[c(socialstart:socialend, moneystart:moneyend, healthstart:healthend)] <- '0 = larger later, 1 = smaller sooner'
 
 # save file
-write.csv(dd, here::here('data', 'tdsd_s1_data_dictionary.csv'), row.names = FALSE)
+#write.csv(dd, here::here('data', 'tdsd_s1_data_dictionary.csv'), row.names = FALSE)
 
