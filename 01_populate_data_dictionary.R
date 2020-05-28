@@ -165,5 +165,5 @@ dd$allowed_values[grep('Q168', dd$Variable)] <- 1
 dd$allowed_values[c(socialstart:socialend, moneystart:moneyend, healthstart:healthend)] <- '0 = larger later, 1 = smaller sooner'
 
 # save file
-#write.csv(dd, here::here('data', 'tdsd_s1_data_dictionary.csv'), row.names = FALSE)
+write.csv(dd, here::here('data', 'tdsd_s1_data_dictionary.csv'), row.names = FALSE)
 
