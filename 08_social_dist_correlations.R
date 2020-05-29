@@ -16,17 +16,20 @@ source(here::here("scr", "corrTableCI.R"))
 dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
 dd <- read.csv(here::here("data", 'tdsd_s1_data_dictionary.csv'), stringsAsFactors=FALSE)
 
-# add social/health difference score
+# add social/health discounting difference score
 dt$discountdiff <- dt$SC5 - dt$SC4
+
+# add social/health valuedifference score
+dt$valuediff <- dt$Q169_2 - dt$Q169_3
 
 # correlation table for social distancing variables
 # formula removes all people with NA values, so analyze Q16, Q20 & Q22 separately
                             
-table1 <- corrTableCI(dt[c(6, 11:15, 24, 39:41, 186:192)])
+table1 <- corrTableCI(dt[c(6, 11:15, 24, 39:41, 181:183, 186:193)])
 
-table2 <- corrTableCI(dt[c(6, 17:22, 189:192)])
+table2 <- corrTableCI(dt[c(6, 17:22, 181:183, 189:193)])
 
-table3 <- corrTableCI(dt[c(6, 26:31, 189:192)])
+table3 <- corrTableCI(dt[c(6, 26:31, 181:183, 189:193)])
 
-table4 <- corrTableCI(dt[c(6, 33:37, 189:192)])
+table4 <- corrTableCI(dt[c(6, 33:37, 181:183, 189:193)])
 

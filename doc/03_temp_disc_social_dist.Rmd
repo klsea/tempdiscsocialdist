@@ -16,10 +16,10 @@ source("../08_social_dist_correlations.R")
 
 # Monetary discounting (SC3)
 ```{r money, echo = FALSE, warnings = FALSE}
-table1[c(2:14), c(1,15)] %>%
+table1[c(2:16), c(1,18)] %>%
   kable() %>%
   kable_styling() %>%
-  row_spec(c(7), bold = T, background = "yellow")
+  row_spec(c(7, 10), bold = T, background = "yellow")
 ```
 
 Q23_1 = `r dd$Question[grep('Q23_1', dd$Variable)]`  
@@ -27,14 +27,18 @@ Q23_1 = `r dd$allowed_values[grep('Q23_1', dd$Variable)]`
 
 **People with higher monetary discount rates are less likely to think they will catch COVID-19.**
 
+Q169_1 = `r dd$Question[grep('Q169_1', dd$Variable)]`  
+
+**People with higher monetary discount rates view money as being more important.**
+
 ```{r money2, echo = FALSE, warnings = FALSE}
-table2[c(2:7), c(1,9)] %>%
+table2[c(2:7), c(1,12)] %>%
   kable() %>%
   kable_styling() 
 ```
 
 ```{r money3, echo = FALSE, warnings = FALSE}
-table3[c(2:7), c(1,9)] %>%
+table3[c(2:7), c(1,12)] %>%
   kable() %>%
   kable_styling() %>%
   row_spec(c(2,3,5,6), bold = T, background = "yellow")
@@ -43,23 +47,29 @@ table3[c(2:7), c(1,9)] %>%
 (lower scores = higher rank)  
 Q20_2 = `r dd$Question[grep('Q20_2', dd$Variable)]`  
 
-**People with higher monetary discount rates are more likely to rank having people visit to deliver essential items higher.**
+**People with higher monetary discount rates are more likely to highly rank having people visit to deliver essential items.**
 
 Q20_3 = `r dd$Question[grep('Q20_3', dd$Variable)]`  
 
-**People with higher monetary discount rates are less likely to rank having people visit for social contact higher.**
+**People with higher monetary discount rates are less likely to highly rank having people visit for social contact.**
 
 Q20_5 = `r dd$Question[grep('Q20_5', dd$Variable)]`  
 
-**People with higher monetary discount rates are more likely to rank having people visit for community service higher.**
+**People with higher monetary discount rates are more likely to highly rank having people visit for community service.**
 
 Q20_6 = `r dd$Question[grep('Q20_6', dd$Variable)]`  
 
-**People with higher monetary discount rates are more likely to rank having people visit for essential care higher.**
+**People with higher monetary discount rates are more likely to highly rank having people visit for essential care.**
+
+```{r money4, echo = FALSE, warnings = FALSE}
+table4[c(2:6), c(1,11)] %>%
+  kable() %>%
+  kable_styling() 
+```
 
 # Health discounting (SC4)
 ```{r healht1, echo = FALSE, warnings = FALSE}
-table1[c(2:14), c(1,16)] %>%
+table1[c(2:16), c(1,19)] %>%
   kable() %>%
   kable_styling() %>%
   row_spec(c(1:2), bold = T, background = "yellow")
@@ -75,14 +85,18 @@ Q11 = `r dd$allowed_values[grep('Q11', dd$Variable)][1]`
 
 **People with higher health discounting rates are less likely to have contracted COVID-19.**
 
+Q169_1 = `r dd$Question[grep('Q169_1', dd$Variable)][1]`  
+
+**People with higher health discounting rates are more likely to **
+
 ```{r health2, echo = FALSE, warnings = FALSE}
-table2[c(2:7), c(1,10)] %>%
+table2[c(2:7), c(1,13)] %>%
   kable() %>%
   kable_styling() 
 ```
 
 ```{r health3, echo = FALSE, warnings = FALSE}
-table3[c(2:7), c(1,10)] %>%
+table3[c(2:7), c(1,13)] %>%
   kable() %>%
   kable_styling() %>%
   row_spec(c(1,3,5,6), bold = T, background = "yellow")
@@ -106,9 +120,15 @@ Q20_6 = `r dd$Question[grep('Q20_6', dd$Variable)]`
 
 **People with higher health discount rates are more likely to highly rank having people visit for essential care.**
 
+```{r health4, echo = FALSE, warnings = FALSE}
+table4[c(2:6), c(1,12)] %>%
+  kable() %>%
+  kable_styling() 
+```
+
 # Social discounting (SC5)
 ```{r social1, echo = FALSE, warnings = FALSE}
-table1[c(2:14), c(1,17)] %>%
+table1[c(2:16), c(1,20)] %>%
   kable() %>%
   kable_styling() %>%
   row_spec(c(1), bold = T, background = "yellow")
@@ -120,13 +140,13 @@ Q10 = `r dd$allowed_values[grep('Q10', dd$Variable)][1]`
 **People with higher social discounting rates are less likely to have COVID-19.**
 
 ```{r social2, echo = FALSE, warnings = FALSE}
-table2[c(2:7), c(1,11)] %>%
+table2[c(2:7), c(1,14)] %>%
   kable() %>%
   kable_styling() 
 ```
 
 ```{r social3, echo = FALSE, warnings = FALSE}
-table3[c(2:7), c(1,11)] %>%
+table3[c(2:7), c(1,14)] %>%
   kable() %>%
   kable_styling() %>%
   row_spec(c(1,6), bold = T, background = "yellow")
@@ -139,6 +159,17 @@ Q20_1 = `r dd$Question[grep('Q20_1', dd$Variable)]`
 Q20_6 = `r dd$Question[grep('Q20_6', dd$Variable)]`  
 
 **People with higher social discount rates are more likely to highly rank having people visit for essential care.**
+
+```{r social4, echo = FALSE, warnings = FALSE}
+table4[c(2:6), c(1,13)] %>%
+  kable() %>%
+  kable_styling() %>%
+  row_spec(c(5), bold = T, background = "yellow")
+```
+
+Q22_5 = `r dd$Question[grep('Q22_5', dd$Variable)]` 
+
+**People with higher social discount rates are less likely to highly rank staying home for other reasons.**
 
 # Discounting difference (Social Discounting - Health Discounting; discountdiff)
 ```{r diff, echo = FALSE, warnings = FALSE}
@@ -168,3 +199,14 @@ table3[c(2:7), c(1,12)] %>%
 Q20_5 = `r dd$Question[grep('Q20_5', dd$Variable)]`  
 
 **People with a larger difference between social and health discount rates are less likely to highly rank having people visit for community service.**
+
+```{r diff4, echo = FALSE, warnings = FALSE}
+table4[c(2:6), c(1,14)] %>%
+  kable() %>%
+  kable_styling() %>%
+  row_spec(c(5), bold = T, background = "yellow")
+```
+
+Q22_5 = `r dd$Question[grep('Q22_5', dd$Variable)]` 
+
+**People with a larger difference between social and health discount rates are less likely to highly rank staying home for other reasons.**
