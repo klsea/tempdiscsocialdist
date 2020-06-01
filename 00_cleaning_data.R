@@ -1,5 +1,6 @@
 # Clean tempdiscsocialdist data set
 # 5.8.20 KLS
+# Written with R version 3.6.1 (2019-07-05)
 
 # load required packages
 library(here)
