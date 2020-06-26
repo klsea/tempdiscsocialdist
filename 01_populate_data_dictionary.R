@@ -1,5 +1,5 @@
 # Populate data dictionary
-# 5.13.20 KLS
+# 5.13.20 KLS updated 6.26.20 with sample #
 
 # load required packages
 library(here)
@@ -12,8 +12,13 @@ library(stringr)
 # set hard-coded variables
 
 # load data
-dt <- read.csv(here::here("data", 'tdsd_s1_data.csv'))
-dd <- read.csv(here::here("data", 'tdsd_s1_data_dictionary.csv'))
+if (sample == 1) {
+  dt <- read.csv(here::here("data", 'tdsd_s1_data.csv'))
+  dd <- read.csv(here::here("data", 'tdsd_s1_data_dictionary.csv'))
+} else {
+  dt <- read.csv(here::here("data", 'tdsd_s2_data.csv'))
+  dd <- read.csv(here::here("data", 'tdsd_s2_data_dictionary.csv'))
+}
 
 #create and populate variable name column
 dd[,'variable_name'] <- NA
@@ -54,6 +59,8 @@ dd$variable_name[grep('SC2', dd$Variable)] <- 'cautiosBehVisitors' # Q19
 dd$variable_name[grep('SC3', dd$Variable)] <- 'propSSmoney'
 dd$variable_name[grep('SC4', dd$Variable)] <- 'propSShealth'
 dd$variable_name[grep('SC5', dd$Variable)] <- 'propSSsocial'
+
+if (sample == 2) { dd$variable_name[grep('Q328', dd$Variable)] <- 'notSocialDistancing' }
 
 # add data type to data dictionary
 dd$type <- sapply(dt, class)
@@ -149,9 +156,17 @@ dd$allowed_values[184] <- '1 = Paying bills / buying essential personal items (g
 5 = Spending it on an experience I would share with someone else, 
 6 = Other'
 dd$allowed_values[185] <- 'text'
-dd$allowed_values[c(186, 188)] <- '-3 to 10'
-dd$allowed_values[187] <- '0-19'
-dd$allowed_values[189:191] <- '0-42'
+
+if (sample == 1) {
+  dd$allowed_values[c(186, 188)] <- '-3 to 10'
+  dd$allowed_values[187] <- '0-19'
+  dd$allowed_values[189:191] <- '0-42'
+} else {
+  dd$allowed_values[186] <- 'Text'
+  dd$allowed_values[c(187, 189)] <- '-3 to 10'
+  dd$allowed_values[188] <- '0-19'
+  dd$allowed_values[190:192] <- '0-42'
+}
 
 # catch trials
 dd$allowed_values[grep('Q77', dd$Variable)] <- 0
@@ -165,5 +180,9 @@ dd$allowed_values[grep('Q168', dd$Variable)] <- 1
 dd$allowed_values[c(socialstart:socialend, moneystart:moneyend, healthstart:healthend)] <- '0 = larger later, 1 = smaller sooner'
 
 # save file
-write.csv(dd, here::here('data', 'tdsd_s1_data_dictionary.csv'), row.names = FALSE)
+if (sample == 1) {
+  write.csv(dd, here::here('data', 'tdsd_s1_data_dictionary.csv'), row.names = FALSE)
+} else {
+  write.csv(dd, here::here('data', 'tdsd_s2_data_dictionary.csv'), row.names = FALSE)
+}
 

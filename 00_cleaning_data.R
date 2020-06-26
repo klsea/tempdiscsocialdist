@@ -1,5 +1,5 @@
 # Clean tempdiscsocialdist data set
-# 5.8.20 KLS
+# 5.8.20 KLS updated 6.26.20 with sample #
 # Written with R version 3.6.1 (2019-07-05)
 
 # load required packages
@@ -9,9 +9,13 @@ library(stringr)
 # load sources function
 
 # set hard-coded variables
-  
+
 # load data
-dt <- read.csv(here::here('data','Time+discounting+across+domains_May+7,+2020_09.54.csv'))
+if (sample == 1) {
+  dt <- read.csv(here::here('data','Time+discounting+across+domains_May+7,+2020_09.54.csv'))  
+} else { 
+  dt <- read.csv(here::here('data','Time+discounting+across+domains-Replication_June 26, 2020_11.43.csv'))
+}
 
 # add id column to data
 dt$ID <- c(0,0,seq(1,nrow(dt)-2, 1))
@@ -38,5 +42,10 @@ dt$Q146 <- as.numeric(as.character(dt$Q146))
 dt$Q146 <- (dt$Q146 - 1) * - 1 # reverse - 0 become 1 and 1 becomes 0
 
 # Save 
-write.csv(dd, here::here("data", "tdsd_s1_data_dictionary.csv"), row.names = FALSE)
-write.csv(dt, here::here("data", "tdsd_s1_data.csv"), row.names = FALSE)
+if (sample == 1) {
+  write.csv(dd, here::here("data", "tdsd_s1_data_dictionary.csv"), row.names = FALSE)
+  write.csv(dt, here::here("data", "tdsd_s1_data.csv"), row.names = FALSE)
+} else {
+  write.csv(dd, here::here("data", "tdsd_s2_data_dictionary.csv"), row.names = FALSE)
+  write.csv(dt, here::here("data", "tdsd_s2_data.csv"), row.names = FALSE)
+}
