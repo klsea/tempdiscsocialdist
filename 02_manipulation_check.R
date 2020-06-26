@@ -1,5 +1,5 @@
 # Manipulation check on tempdiscsocialdist data set
-# 5.11.20 KLS and 5.22.20
+# 5.11.20 KLS and 5.22.20 updated 6.26.20 with sample #
 
 # load required packages
 library(here)
@@ -10,7 +10,11 @@ library(tidyverse)
 # set hard-coded variables
 
 # load data
-dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
+if (sample == 1) {
+  dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
+} else{
+  dt <- read.csv(here::here("data", "tdsd_s2_data.csv"))
+}
 
 # start and stop values
 socialstart <- grep('Q35', colnames(dt))
@@ -79,3 +83,6 @@ sum(compareNA(d5$SC1, d5$mentalhealthcheck))
 
 # visitor behavior
 sum(compareNA(d5$SC2, d5$visitorbehcheck))
+
+# clean up 
+rm(d1, d2, d3, d4, d5, dt, compareNA, healthend, healthstart, moneyend, moneystart, socialend, socialstart)

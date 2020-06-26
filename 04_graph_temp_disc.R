@@ -1,5 +1,5 @@
 # Graph temp discount data for tempdiscsocialdist data set
-# 5.13.20 KLS
+# 5.13.20 KLS updated 6.26.20 with sample #
 
 # load required packages
 library(here)
@@ -14,8 +14,13 @@ source(here::here("scr", "SummarySE.R"))
 # set hard-coded variables
 
 # load data
-dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
-dd <- read.csv(here::here("data", 'tdsd_s1_data_dictionary.csv'), stringsAsFactors=FALSE)
+if( sample == 1) {
+  dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
+  dd <- read.csv(here::here("data", 'tdsd_s1_data_dictionary.csv'), stringsAsFactors=FALSE)
+} else {
+  dt <- read.csv(here::here("data", "tdsd_s2_data.csv"))
+  dd <- read.csv(here::here("data", 'tdsd_s2_data_dictionary.csv'), stringsAsFactors=FALSE)
+}
 
 d1 <- td_wide_to_long(dt)
 
@@ -91,3 +96,7 @@ healthimportplot <- ggplot(dt, aes(Age, healthimport)) + geom_point(color = "#00
   geom_smooth(method = lm, color = "#00BA38", fill = "#00BA38") + theme_minimal() + theme(legend.position = 'none') + ylab('') + 
   annotate(geom = 'text', x = 80 , y = 0, label = "Not important") +  annotate(geom = 'text', x = 75 , y = 100, label = "Extremely important")  
 healthimportplot
+
+# clean up
+rm(td_x_age, td_means, socialimportplot, partplot, moneyuseplot, moneyimportplot, healthimportplot, 
+   dt, dd, d1, d2, d3, summarySE, td_wide_to_long)

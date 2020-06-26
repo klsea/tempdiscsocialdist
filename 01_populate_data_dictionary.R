@@ -186,3 +186,5 @@ if (sample == 1) {
   write.csv(dd, here::here('data', 'tdsd_s2_data_dictionary.csv'), row.names = FALSE)
 }
 
+# clean up 
+rm(dd, dt, catch, healthend, healthstart, moneyend, moneystart, socialend, socialstart)

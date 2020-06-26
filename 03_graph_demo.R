@@ -1,5 +1,5 @@
 # Graph demo data for tempdiscsocialdist data set
-# 5.11.20 KLS
+# 5.11.20 KLS updated 6.26.20 with sample #
 
 # load required packages
 library(here)
@@ -12,8 +12,12 @@ library(plyr)
 # set hard-coded variables
 
 # load data
-dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
-
+if (sample == 1) {
+  dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
+} else {
+  dt <- read.csv(here::here("data", "tdsd_s2_data.csv"))
+}
+  
 # histogram of age
 dt$Age <- dt$Q5
 ageplot <- ggplot(dt, aes(Age)) + geom_histogram(binwidth= 5, colour = 'black', fill = 'gray') + 
@@ -93,3 +97,6 @@ dt$Class <- ordered(dt$Class, levels = c('Lower class','Working class', 'Lower m
 classplot <- ggplot(dt, aes(Class)) + geom_histogram(stat = 'count', colour = 'black', fill = 'gray') + 
   theme_minimal() + theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=12))
 classplot
+
+# clean up
+rm(ageplot, classplot, dt, edplot, employ_freq, employplot, incomeplot, raceplot, sexplot)

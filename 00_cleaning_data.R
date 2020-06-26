@@ -49,3 +49,6 @@ if (sample == 1) {
   write.csv(dd, here::here("data", "tdsd_s2_data_dictionary.csv"), row.names = FALSE)
   write.csv(dt, here::here("data", "tdsd_s2_data.csv"), row.names = FALSE)
 }
+
+# clean up
+rm(dd, dt)

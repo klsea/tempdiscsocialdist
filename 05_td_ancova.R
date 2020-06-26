@@ -1,5 +1,5 @@
 # Analyze temp discount data for tempdiscsocialdist data set
-# 5.15.20 KLS
+# 5.15.20 KLS updated 6.26.20 with sample #
 
 # load required packages
 library(here)
@@ -12,7 +12,11 @@ source(here::here("scr", "td_wide_to_long.R"))
 # set hard-coded variables
 
 # load data
-dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
+if (sample == 1) {
+  dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
+} else {
+  dt <- read.csv(here::here("data", "tdsd_s2_data.csv"))
+}
 
 # convert to long format
 d1 <- td_wide_to_long(dt)
@@ -28,3 +32,5 @@ fu <- d1 %>%
     p.adjust.method = "bonferroni"
   )
 fu
+
+rm(dt, d1, fu, m1, td_wide_to_long)
