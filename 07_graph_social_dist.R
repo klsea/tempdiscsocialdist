@@ -1,5 +1,5 @@
 # Graph covid data for tempdiscsocialdist data set
-# 5.19.20 KLS
+# 5.19.20 KLS updated 6.27.20 with sample #
 
 # load required packages
 library(here)
@@ -14,8 +14,13 @@ source(here::here("scr", "multiplot.R"))
 # set hard-coded variables
 
 # load data
-dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
-dd <- read.csv(here::here("data", 'tdsd_s1_data_dictionary.csv'), stringsAsFactors=FALSE)
+if (sample == 1) {
+  dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
+  dd <- read.csv(here::here("data", 'tdsd_s1_data_dictionary.csv'), stringsAsFactors=FALSE)
+} else {
+  dt <- read.csv(here::here("data", "tdsd_s2_data.csv"))
+  dd <- read.csv(here::here("data", 'tdsd_s2_data_dictionary.csv'), stringsAsFactors=FALSE)
+}
 
 # create a function to make fancy graphs with histogram & age lined up
 
@@ -27,6 +32,13 @@ fancy_graph <- function(plot1, plot2, ylabel, color_var) {
     theme_minimal() + theme(legend.position = 'none', axis.title.y = element_blank(), 
                             axis.text.y = element_blank()) + xlab('Count') 
   multiplot(g1,g2, cols = 2)
+}
+
+# create name variable
+if (sample == 1) {
+  name <- 's1_'
+} else {
+  name <- 's2_'
 }
 
 # Covid questions
@@ -70,16 +82,16 @@ p1 <- ggplot(dt, aes(Q5, Q16_1))
 p2 <- ggplot(dt, aes(Q16_1, fill = color))
 fancy_graph(p1, p2, paste0('Why leave? ', 
                            dd$variable_name[grep('Q16_1', dd$Variable)[[1]]]), color)
-saveRDS(p1, here::here('output', 'work1.RDS'))
-saveRDS(p2, here::here('output', 'work2.RDS'))
+saveRDS(p1, here::here('output', paste0(name, 'work1.RDS')))
+saveRDS(p2, here::here('output', paste0(name, 'work2.RDS')))
 
 color <- factor(dt$Q16_2)
 p1 <- ggplot(dt, aes(Q5, Q16_2)) 
 p2 <- ggplot(dt, aes(Q16_2, fill = color))
 fancy_graph(p1, p2, paste0('Why leave? ', 
                            dd$variable_name[grep('Q16_2', dd$Variable)[[1]]]), color)
-saveRDS(p1, here::here('output', 'ei1.RDS'))
-saveRDS(p2, here::here('output', 'ei2.RDS'))
+saveRDS(p1, here::here('output', paste0(name, 'ei1.RDS')))
+saveRDS(p2, here::here('output', paste0(name, 'ei2.RDS')))
 
 color <- factor(dt$Q16_3)
 p1 <- ggplot(dt, aes(Q5, Q16_3)) 
@@ -98,8 +110,8 @@ p1 <- ggplot(dt, aes(Q5, Q16_5))
 p2 <- ggplot(dt, aes(Q16_5, fill = color))
 fancy_graph(p1, p2, paste0('Why leave? ', 
                            dd$variable_name[grep('Q16_5', dd$Variable)[[1]]]), color)
-saveRDS(p1, here::here('output', 'com1.RDS'))
-saveRDS(p2, here::here('output', 'com2.RDS'))
+saveRDS(p1, here::here('output', paste0(name, 'com1.RDS')))
+saveRDS(p2, here::here('output', paste0(name, 'com2.RDS')))
 
 
 color <- factor(dt$Q16_6)
@@ -125,8 +137,8 @@ p1 <- ggplot(dt, aes(Q5, Q20_1))
 p2 <- ggplot(dt, aes(Q20_1, fill = color))
 fancy_graph(p1, p2, paste0('Why have visitors? ', 
                            dd$variable_name[grep('Q20_1', dd$Variable)[[1]]]), color)
-saveRDS(p1, here::here('output', 'vw1.RDS'))
-saveRDS(p2, here::here('output', 'vw2.RDS'))
+saveRDS(p1, here::here('output', paste0(name, 'vw1.RDS')))
+saveRDS(p2, here::here('output', paste0(name, 'vw2.RDS')))
 
 color <- factor(dt$Q20_2)
 p1 <- ggplot(dt, aes(Q5, Q20_2)) 
@@ -163,24 +175,24 @@ p1 <- ggplot(dt, aes(Q5, Q20_6))
 p2 <- ggplot(dt, aes(Q20_6, fill = color))
 fancy_graph(p1, p2, paste0('Why have visitors? ', 
                            dd$variable_name[grep('Q20_6', dd$Variable)[[1]]]), color)
-saveRDS(p1, here::here('output', 'ec1.RDS'))
-saveRDS(p2, here::here('output', 'ec2.RDS'))
+saveRDS(p1, here::here('output', paste0(name, 'ec1.RDS')))
+saveRDS(p2, here::here('output', paste0(name, 'ec2.RDS')))
 
 color <- factor(dt$Q22_1)
 p1 <- ggplot(dt, aes(Q5, Q22_1)) 
 p2 <- ggplot(dt, aes(Q22_1, fill = color))
 fancy_graph(p1, p2, paste0('Why social distance? ', 
                            dd$variable_name[grep('Q22_1', dd$Variable)[[1]]]), color)
-saveRDS(p1, here::here('output', 'sh1.RDS'))
-saveRDS(p2, here::here('output', 'sh2.RDS'))
+saveRDS(p1, here::here('output', paste0(name, 'sh1.RDS')))
+saveRDS(p2, here::here('output', paste0(name, 'sh2.RDS')))
 
 color <- factor(dt$Q22_2)
 p1 <- ggplot(dt, aes(Q5, Q22_2)) 
 p2 <- ggplot(dt, aes(Q22_2, fill = color))
 fancy_graph(p1, p2, paste0('Why social distance? ', 
                            dd$variable_name[grep('Q22_2', dd$Variable)[[1]]]), color)
-saveRDS(p1, here::here('output', 'fh1.RDS'))
-saveRDS(p2, here::here('output', 'fh2.RDS'))
+saveRDS(p1, here::here('output', paste0(name, 'fh1.RDS')))
+saveRDS(p2, here::here('output', paste0(name, 'fh2.RDS')))
 
 color <- factor(dt$Q22_3)
 p1 <- ggplot(dt, aes(Q5, Q22_3)) 
@@ -200,8 +212,8 @@ color <- factor(dt$Q23_1)
 p1 <- ggplot(dt, aes(Q5, Q23_1))
 p2 <- ggplot(dt, aes(Q23_1, fill = color))
 fancy_graph(p1, p2, "How likely do you think you are to catch Covid19?", color)
-saveRDS(p1, here::here('output', 'cc1.RDS'))
-saveRDS(p2, here::here('output', 'cc2.RDS'))
+saveRDS(p1, here::here('output', paste0(name, 'cc1.RDS')))
+saveRDS(p2, here::here('output', paste0(name, 'cc2.RDS')))
 
 color <- factor(dt$Q24_1)
 p1 <- ggplot(dt, aes(Q5, Q24_1))
@@ -212,8 +224,8 @@ color <- factor(dt$Q25)
 p1 <- ggplot(dt, aes(Q5, Q25))
 p2 <- ggplot(dt, aes(Q25, fill = color))
 fancy_graph(p1, p2, "What is the most likely outcome if you caught Covid-19", color)
-saveRDS(p1, here::here('output', 'co1.RDS'))
-saveRDS(p2, here::here('output', 'co2.RDS'))
+saveRDS(p1, here::here('output', paste0(name, 'co1.RDS')))
+saveRDS(p2, here::here('output', paste0(name, 'co2.RDS')))
 
 # mental health
 
@@ -221,7 +233,7 @@ color <- factor(dt$SC1)
 p1 <- ggplot(dt, aes(Q5, SC1)) 
 p2 <- ggplot(dt, aes(SC1, fill = color))
 fancy_graph(p1, p2, dd$variable_name[grep('SC1', dd$Variable)], color)
-saveRDS(p1, here::here('output', 'mh1.RDS'))
-saveRDS(p2, here::here('output', 'mh2.RDS'))
+saveRDS(p1, here::here('output', paste0(name, 'mh1.RDS')))
+saveRDS(p2, here::here('output', paste0(name, 'mh2.RDS')))
 
-rm(p1, p2)
+rm(p1, p2, color, fancy_graph, multiplot, td_wide_to_long, dd, dt, name)

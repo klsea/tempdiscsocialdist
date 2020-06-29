@@ -1,5 +1,5 @@
 # Correlations for social dist variables in  tempdiscsocialdist data set
-# 5.22.20 KLS
+# 5.22.20 KLS updated 6.27.20 with sample #
 
 # load required packages
 library(here)
@@ -13,8 +13,13 @@ source(here::here("scr", "corrTableCI.R"))
 # set hard-coded variables
 
 # load data
-dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
-dd <- read.csv(here::here("data", 'tdsd_s1_data_dictionary.csv'), stringsAsFactors=FALSE)
+if (sample == 1) {
+  dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
+  dd <- read.csv(here::here("data", 'tdsd_s1_data_dictionary.csv'), stringsAsFactors=FALSE)
+} else {
+  dt <- read.csv(here::here("data", "tdsd_s2_data.csv"))
+  dd <- read.csv(here::here("data", 'tdsd_s2_data_dictionary.csv'), stringsAsFactors=FALSE)
+}
 
 # add social/health discounting difference score
 dt$discountdiff <- dt$SC5 - dt$SC4
@@ -33,3 +38,4 @@ table3 <- corrTableCI(dt[c(6, 26:31, 181:183, 189:193)])
 
 table4 <- corrTableCI(dt[c(6, 33:37, 181:183, 189:193)])
 
+rm(dd, dt, table1, table2, table3, table4)

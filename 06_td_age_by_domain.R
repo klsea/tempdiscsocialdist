@@ -1,5 +1,5 @@
 # Analyze temp discount data for tempdiscsocialdist data set
-# 5.15.20 KLS
+# 5.15.20 KLS updated 6.27.20 with sample #
 
 # load required packages
 library(here)
@@ -12,7 +12,11 @@ source(here::here("scr", "td_wide_to_long.R"))
 # set hard-coded variables
 
 # load data
-dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
+if (sample == 1) {
+  dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
+} else {
+  dt <- read.csv(here::here("data", "tdsd_s2_data.csv"))
+}
 
 # convert to long format
 d1 <- td_wide_to_long(dt)
@@ -60,3 +64,5 @@ anova(health_models[[2]], health_models[[3]])
 
 tab_model(money_models[[1]], money_models[[3]], health_models[[1]], health_models[[3]], social_models[[1]], social_models[[3]], 
           dv.labels = c("Money 1", "Money 2", "Health 1", "Health 2", "Social 1", "Social 2"))
+
+rm(d1, d2, d3, d4, dt, health_models, money_models, social_models, models, td_wide_to_long)
