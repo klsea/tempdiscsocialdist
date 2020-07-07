@@ -1,11 +1,11 @@
 ---
 title: "00_Demo_data"
 author: "Kendra Seaman"
-date: "5/11/2020"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
 output: html_document
 ---
 
-# Temporal Discounting Social Distancing Study 1
+# Temporal Discounting Social Distancing Study `r sample`
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -18,11 +18,15 @@ source('../03_graph_demo.R')
 ageplot
 ```
 
+The sample ranged in age from `r agerange[1]` to `r agerange[2]` with a mean age of **`r round(meanage, 2)`**. 
+
 ## Sex distribution
 
 ```{r graph sex, echo = FALSE}
 sexplot
 ```
+
+The sample had **`r sex_freq[1,2]` women (`r round(sex_freq[1,2] / (sex_freq[1,2] + sex_freq[2,2]) * 100, 2)`%)**.  
 
 ## Education distribution
 
@@ -30,11 +34,15 @@ sexplot
 edplot
 ```
 
+The vast majority participants had some college **(`r sum(ed_freq$percent[3:6])*100`%)**.
+
 ## Race distribution
 
 ```{r graph race, echo = FALSE}
 raceplot
 ```
+
+The samples were almost equally distributed between **White (`r race_freq[3,4]*100`%), Black (`r race_freq[2,4]*100`%), or Hispanic/Latino (`r race_freq[3,4]*100`%)**.
 
 ## Income distribution
 
@@ -42,6 +50,9 @@ raceplot
 incomeplot
 ```
 
+The most frequent income band selected was **`r modeincome[1]`**.  
+
+The median income band was **`r dollar((medianincome-5) * 1000)` - `r dollar((medianincome+5) * 1000)`**
 
 ## Employment distribution
 
@@ -49,7 +60,15 @@ incomeplot
 employplot
 ```
 
+The most frequent employment was **`r modeemploy[1]`**.  
+
+**`r round(fulltime * 100, 2)`%** were employeed full time.  
+
+**`r round(retired * 100, 2)`%** were retired.
+
 ## Class distribution
 ```{r graph class, echo = FALSE}
 classplot
 ```
+
+The most frequent class was **`r modeclass[1]`**, **`r round((class_freq[4,2] / sum(class_freq$freq))*100, 2)`%**.

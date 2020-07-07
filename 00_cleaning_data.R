@@ -14,7 +14,7 @@ library(stringr)
 if (sample == 1) {
   dt <- read.csv(here::here('data','Time+discounting+across+domains_May+7,+2020_09.54.csv'))  
 } else { 
-  dt <- read.csv(here::here('data','Time+discounting+across+domains-Replication_June 26, 2020_11.43.csv'))
+  dt <- read.csv(here::here('data', 'Time+discounting+across+domains+Replication_July+2+2020_11.40.csv'))
 }
 
 # add id column to data
@@ -22,9 +22,10 @@ dt$ID <- c(0,0,seq(1,nrow(dt)-2, 1))
 dt$ID <- str_pad(dt$ID, 3, pad="0")
 
 # clean out qualtrics columns
-dt <- dt[-c(1:grep('UserLanguage', colnames(dt)))] # get rid of garbage at the front
+dt <- dt[-c(1:5, 7:grep('UserLanguage', colnames(dt)))] # get rid of garbage at the front
 dt <- dt[c(ncol(dt), 1:(ncol(dt)-1))] # moves ID column to the front
 dt <- dt[-c(grep('opp', colnames(dt)):ncol(dt))] # get rid of garbage at the back
+dt <- dt[c(1, 3:ncol(dt), 2)] # moves duration to end
 
 # create data dictionary
 dd <- t(dt[1,])

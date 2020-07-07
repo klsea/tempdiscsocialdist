@@ -38,6 +38,7 @@ dd$variable_name[43:45] <- c('imagine_weeks', 'imagine_months', 'imagine_years')
 dd$variable_name[46:48] <- c('comprehension_check', 'social_partner', 'social_motivation')
 dd$variable_name[181:183] <- c('import_money', 'import_social', 'import_health')
 dd$variable_name[184:185] <- c('spend_money', 'spend_money_other')
+dd$variable_name[192] <- 'duration'
 
 #add names to td
 socialstart <- grep('Q35', dd$Variable)
@@ -161,11 +162,13 @@ if (sample == 1) {
   dd$allowed_values[c(186, 188)] <- '-3 to 10'
   dd$allowed_values[187] <- '0-19'
   dd$allowed_values[189:191] <- '0-42'
+  dd$allowed_values[192] <- 'positive integer'
 } else {
   dd$allowed_values[186] <- 'Text'
   dd$allowed_values[c(187, 189)] <- '-3 to 10'
   dd$allowed_values[188] <- '0-19'
   dd$allowed_values[190:192] <- '0-42'
+  dd$allowed_values[193] <- 'positive integer'
 }
 
 # catch trials
@@ -187,4 +190,4 @@ if (sample == 1) {
 }
 
 # clean up 
-rm(dd, dt, catch, healthend, healthstart, moneyend, moneystart, socialend, socialstart)
+#rm(dd, dt, catch, healthend, healthstart, moneyend, moneystart, socialend, socialstart)

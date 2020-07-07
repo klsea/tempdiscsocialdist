@@ -1,9 +1,11 @@
 ---
 title: "TempDisc"
 author: "Kendra Seaman"
-date: "5/19/2020"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
 output: html_document
 ---
+
+# Temporal Discounting Social Distancing Study `r sample`
 
 ```{r setup, include=FALSE}
 library(knitr)
@@ -17,7 +19,7 @@ source("../06_td_age_by_domain.R")
 ```
 
 # Domain (Money x Health x Social) ANCOVA with Age 
-```{r mean graph, echo = FALSE}
+```{r mean graph, echo = FALSE, warnings = FALSE}
 td_means
 ```
 
@@ -46,17 +48,24 @@ m1$`Sphericity Corrections` %>%
 
 ### Follow-up Test
 ```{r followup, echo = FALSE}
-fu %>%
-  kable() %>%
-  kable_styling() %>%
-  row_spec(1:2, bold = T, background = "yellow")
+if (sample == 1) {
+  fu %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(1:2, bold = T, background = "yellow") 
+} else {
+    fu %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(1:3, bold = T, background = "yellow") 
+}
 ```
 
 ***
 ***
 
 # Age effects
-```{r agegraph, echo = FALSE}
+```{r agegraph, echo = FALSE, warnings = FALSE}
 td_x_age
 ```
 
@@ -78,15 +87,19 @@ summary(money_models[[3]])$coefficients %>%
 
 No efffect of age on money discounting.
 
-```{r money3, echo = FALSE}
+```{r money3, echo = FALSE, warnings = FALSE}
 moneyuseplot
 ```
 
 Q2169_1 = `r dd$Question[grep('Q169_1', dd$Variable)]` 
 
+Mean importance of social contact is `r moneymean` on a scale from 0 (Not important) to 100 (Extremely important)
+
 ```{r money4, echo = FALSE}
 moneyimportplot
 ```
+
+Correlation between age and importance of money, r(`r moneycor$n[1,2]`) = `r moneycor$r[1,2]`, p = `r moneycor$P[1,2]`.
 
 ### Health 
 
@@ -117,9 +130,13 @@ Significant linear effect of age on health discounting, with older adults discou
 
 Q2169_2 = `r dd$Question[grep('Q169_2', dd$Variable)]` 
 
-```{r health4, echo = FALSE}
+Mean importance of social contact is `r healthmean` on a scale from 0 (Not important) to 100 (Extremely important)
+
+```{r health4, echo = FALSE, warning = FALSE}
 healthimportplot
 ```
+
+Correlation between age and importance of health, r(`r healthcor$n[1,2]`) = `r healthcor$r[1,2]`, p = `r healthcor$P[1,2]`.
 
 ### Social
 
@@ -133,10 +150,17 @@ summary(social_models[[1]])$coefficients %>%
 
 Model - Age + Age^2
 ```{r social2, echo = FALSE}
-summary(social_models[[3]])$coefficients %>%
-  kable() %>%
-  kable_styling() %>%
-  row_spec(2:3, bold = T, background = "yellow")
+if (sample == 1) {
+  summary(social_models[[3]])$coefficients %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(2:3, bold = T, background = "yellow")
+} else {
+  summary(social_models[[3]])$coefficients %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(2, bold = T, background = "yellow")
+}
 ```
 
 Model comparison
@@ -156,7 +180,10 @@ partplot
 
 Q2169_3 = `r dd$Question[grep('Q169_3', dd$Variable)]` 
 
-```{r social5, echo = FALSE}
+Mean importance of social contact is `r socialmean` on a scale from 0 (Not important) to 100 (Extremely important)
+
+```{r social5, echo = FALSE, warnings = FALSE}
 socialimportplot
 ```
 
+Correlation between age and importance of social contact, r(`r socialcor$n[1,2]`) = `r socialcor$r[1,2]`, p = `r socialcor$P[1,2]`.

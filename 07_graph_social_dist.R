@@ -236,4 +236,5 @@ fancy_graph(p1, p2, dd$variable_name[grep('SC1', dd$Variable)], color)
 saveRDS(p1, here::here('output', paste0(name, 'mh1.RDS')))
 saveRDS(p2, here::here('output', paste0(name, 'mh2.RDS')))
 
-rm(p1, p2, color, fancy_graph, multiplot, td_wide_to_long, dd, dt, name)
+#rm(p1, p2, color, fancy_graph, multiplot, td_wide_to_long, dd, dt, name)
+

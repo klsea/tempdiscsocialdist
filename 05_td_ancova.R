@@ -33,4 +33,4 @@ fu <- d1 %>%
   )
 fu
 
-rm(dt, d1, fu, m1, td_wide_to_long)
+#rm(dt, d1, fu, m1, td_wide_to_long)

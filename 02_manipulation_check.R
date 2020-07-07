@@ -85,4 +85,4 @@ sum(compareNA(d5$SC1, d5$mentalhealthcheck))
 sum(compareNA(d5$SC2, d5$visitorbehcheck))
 
 # clean up 
-rm(d1, d2, d3, d4, d5, dt, compareNA, healthend, healthstart, moneyend, moneystart, socialend, socialstart)
+#rm(d1, d2, d3, d4, d5, dt, compareNA, healthend, healthstart, moneyend, moneystart, socialend, socialstart)

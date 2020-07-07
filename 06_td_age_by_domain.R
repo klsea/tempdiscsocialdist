@@ -62,7 +62,9 @@ anova(social_models[[1]], social_models[[3]])
 anova(health_models[[2]], health_models[[3]])
 # M3 wins
 
+tablename <- paste0('regressions_study_', sample, '.html')
 tab_model(money_models[[1]], money_models[[3]], health_models[[1]], health_models[[3]], social_models[[1]], social_models[[3]], 
-          dv.labels = c("Money 1", "Money 2", "Health 1", "Health 2", "Social 1", "Social 2"))
+          dv.labels = c("Money 1", "Money 2", "Health 1", "Health 2", "Social 1", "Social 2"), 
+          file = here::here('figs', tablename))
 
-rm(d1, d2, d3, d4, dt, health_models, money_models, social_models, models, td_wide_to_long)
+#rm(d1, d2, d3, d4, dt, health_models, money_models, social_models, models, td_wide_to_long)

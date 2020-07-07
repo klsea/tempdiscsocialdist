@@ -6,6 +6,7 @@ library(here)
 library(tidyverse)
 library(ggplot2)
 library(plyr)
+library(Hmisc)
 
 # load source functions
 source(here::here("scr", "td_wide_to_long.R"))
@@ -17,19 +18,30 @@ source(here::here("scr", "SummarySE.R"))
 if( sample == 1) {
   dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
   dd <- read.csv(here::here("data", 'tdsd_s1_data_dictionary.csv'), stringsAsFactors=FALSE)
+  plottitle <- 'Primary Sample'
 } else {
   dt <- read.csv(here::here("data", "tdsd_s2_data.csv"))
   dd <- read.csv(here::here("data", 'tdsd_s2_data_dictionary.csv'), stringsAsFactors=FALSE)
+  plottitle <- 'Replication Sample'
 }
 
 d1 <- td_wide_to_long(dt)
 
 # graph td x age
+
 td_x_age <- ggplot(d1, aes(Age, propChoice)) + geom_point(aes(color = domain)) + geom_smooth(method=lm, color = "black") + 
   geom_smooth(method = "lm", formula = y ~ x + I(x^2), aes(color = domain, fill = domain )) +
   facet_grid(.~ domain) +theme_minimal() + theme(legend.position="none") + 
-  ylab('Proportion of Smaller, Sooner Choices')
+  ylab('Proportion of Smaller, Sooner Choices') + ggtitle(plottitle) + 
+  theme(plot.title = element_text(face="bold", size = 20), 
+        axis.title.x = element_text(size = 20), axis.title.y = element_text(size = 20), 
+        axis.text.x = element_text(size = 16), axis.text.y = element_text(size = 16), 
+        strip.text.x = element_text(size=16))
+
+plotname <- paste0('td_x_age_study_', sample, '.png')
+png(file = here::here('figs', plotname), width = 1000, height = 425)
 td_x_age
+dev.off()
 
 # graph td means
 td_means <- ggplot(d1, aes(domain, propChoice)) + geom_violin(trim = FALSE, aes(fill = domain)) + 
@@ -86,17 +98,24 @@ moneyimportplot <- ggplot(dt, aes(Age, moneyimport)) + geom_point(color = "#F876
   geom_smooth(method = lm, color = "#F8766D", fill = "#F8766D") + theme_minimal() + theme(legend.position = 'none') + ylab('') + 
   annotate(geom = 'text', x = 80 , y = 0, label = "Not important") +  annotate(geom = 'text', x = 75 , y = 100, label = "Extremely important") 
 moneyimportplot
+moneycor = rcorr(dt$Age, dt$moneyimport)
+moneymean = mean(dt$moneyimport)
 
 socialimportplot <- ggplot(dt, aes(Age, socialimport)) + geom_point(color = "#619CFF") + 
   geom_smooth(method = lm, fill = "#619CFF", color = "#619CFF") + theme_minimal() + theme(legend.position = 'none') + ylab('') + 
   annotate(geom = 'text', x = 80 , y = 0, label = "Not important") +  annotate(geom = 'text', x = 75 , y = 100, label = "Extremely important") 
 socialimportplot
+socialcor = rcorr(dt$Age, dt$socialimport)
+socialmean = mean(dt$socialimport)
+
 
 healthimportplot <- ggplot(dt, aes(Age, healthimport)) + geom_point(color = "#00BA38") + 
   geom_smooth(method = lm, color = "#00BA38", fill = "#00BA38") + theme_minimal() + theme(legend.position = 'none') + ylab('') + 
   annotate(geom = 'text', x = 80 , y = 0, label = "Not important") +  annotate(geom = 'text', x = 75 , y = 100, label = "Extremely important")  
 healthimportplot
+healthcor = rcorr(dt$Age, dt$healthimport)
+healthmean = mean(dt$healthimport)
 
 # clean up
-rm(td_x_age, td_means, socialimportplot, partplot, moneyuseplot, moneyimportplot, healthimportplot, 
-   dt, dd, d1, d2, d3, summarySE, td_wide_to_long)
+# rm(td_x_age, td_means, socialimportplot, partplot, moneyuseplot, moneyimportplot, healthimportplot, 
+#    dt, dd, d1, d2, d3, summarySE, td_wide_to_long)

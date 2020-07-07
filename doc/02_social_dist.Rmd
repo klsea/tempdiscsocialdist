@@ -1,9 +1,11 @@
 ---
 title: "Social Distance and Age"
 author: "Kendra Seaman"
-date: "5/26/2020"
+date:  "`r format(Sys.time(), '%B %d, %Y')`"
 output: html_document
 ---
+
+# Temporal Discounting Social Distancing Study `r sample`
 
 ```{r setup, include=FALSE}
 library(knitr)
@@ -11,7 +13,7 @@ library(kableExtra)
 ```
 
 ```{r scripts, include = FALSE}
-source("../07_social_dist_correlations.R")
+source("../08_social_dist_correlations.R")
 source("../scr/multiplot.R")
 
 fancy_graph <- function(plot1, plot2, ylabel, color_var) {
@@ -26,18 +28,27 @@ fancy_graph <- function(plot1, plot2, ylabel, color_var) {
 ```
 
 ```{r correlations, echo = FALSE, warnings = FALSE}
-table1[1:13, 1:2] %>%
-  kable() %>%
-  kable_styling() %>%
-  row_spec(c(8, 10, 12), bold = T, background = "yellow")
+if (sample == 1) {
+  table1[c(1:10, 14:16), 1:2] %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(8, 10, 12), bold = T, background = "yellow")
+} else {
+  table1[c(1:10, 14:16), 1:2] %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(8, 10, 12), bold = T, background = "yellow")
+}
 ```
 
 Q23_1 = `r dd$Question[grep('Q23_1', dd$Variable)]`
 
-```{r likely covid, echo = FALSE, warnings = FALSE}
+```{r likely covid, echo = FALSE, warnings = FALSE, message = FALSE}
+names = c('cc1.RDS', 'cc2.RDS')
+if (sample == 1) {names = paste0('../output/s1_', names) }else { names = paste0('../output/s2_', names) }
 color <- factor(dt$Q23_1)
-p1 <- readRDS("../output/cc1.RDS")
-p2 <- readRDS("../output/cc2.RDS")
+p1 <- readRDS(names[1])
+p2 <- readRDS(names[2])
 fancy_graph(p1, p2, dd$variable_name[grep('Q23_1', dd$Variable)], color)
 ```
 
@@ -45,101 +56,117 @@ Q25 = `r dd$Question[grep('Q25', dd$Variable)]`
 
 `r dd$allowed_values[grep('Q25', dd$Variable)]`
 
-```{r covid outcome, echo = FALSE, warning = FALSE}
+```{r covid outcome, echo = FALSE, warning = FALSE, , message = FALSE}
+names = c('co1.RDS', 'co2.RDS')
+if (sample == 1) {names = paste0('../output/s1_', names) }else { names = paste0('../output/s2_', names) }
 color <- factor(dt$Q25)
-p1 <- readRDS("../output/co1.RDS")
-p2 <- readRDS("../output/co2.RDS")
+p1 <- readRDS(names[1])
+p2 <- readRDS(names[2])
 fancy_graph(p1, p2, dd$variable_name[grep('Q25', dd$Variable)], color)
 ```
 
 SC1 = `r dd$Question[grep('Q26', dd$Variable)]` 
 
-```{r mental health, echo = FALSE, warning = FALSE}
+```{r mental health, echo = FALSE, warning = FALSE, message = FALSE}
+names = c('mh1.RDS', 'mh2.RDS')
+if (sample == 1) {names = paste0('../output/s1_', names) }else { names = paste0('../output/s2_', names) }
 color <- factor(dt$SC1)
-p1 <- readRDS("../output/mh1.RDS")
-p2 <- readRDS("../output/mh2.RDS")
+p1 <- readRDS(names[1])
+p2 <- readRDS(names[2])
 fancy_graph(p1, p2, dd$variable_name[grep('SC1', dd$Variable)], color)
 ```
 
 ```{r correlations2, echo = FALSE, warnings = FALSE}
-table2[1:2] %>%
-  kable() %>%
-  kable_styling() %>%
-  row_spec(c(2,3,6), bold = T, background = "yellow")
+if (sample == 1) {
+  table2[c(1:7, 14:15), 1:2] %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(2, 3, 6), bold = T, background = "yellow")
+} else {
+  table2[c(1:7, 14:15), 1:2] %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(2, 3, 6), bold = T, background = "yellow")
+}
 ```
 
 Q16_1 = `r dd$Question[grep('Q16_1', dd$Variable)]` 
 lower scores = higher rank
 
-```{r work, echo = FALSE, warning = FALSE}
+```{r work, echo = FALSE, warning = FALSE, message = FALSE}
+names = c('work1.RDS', 'work2.RDS')
+if (sample == 1) {names = paste0('../output/s1_', names) }else { names = paste0('../output/s2_', names) }
 color <- factor(dt$Q16_1)
-p1 <- readRDS("../output/work1.RDS")
-p2 <- readRDS("../output/work2.RDS")
+p1 <- readRDS(names[1])
+p2 <- readRDS(names[2])
 fancy_graph(p1, p2, dd$variable_name[grep('Q16_1', dd$Variable)], color)
 ```
 
 Q16_2 = `r dd$Question[grep('Q16_2', dd$Variable)]` 
-lower scores = higher rank
-
-```{r essential, echo = FALSE, warning = FALSE}
-color <- factor(dt$Q16_2)
-p1 <- readRDS("../output/ei1.RDS")
-p2 <- readRDS("../output/ei2.RDS")
-fancy_graph(p1, p2, dd$variable_name[grep('Q16_2', dd$Variable)], color)
-```
+lower scores = higher rank  
+**Q16_2's correlation with age is not significant in replication sample.**
 
 Q16_5 = `r dd$Question[grep('Q16_5', dd$Variable)]` 
 lower scores = higher rank
 
-```{r community, echo = FALSE, warning = FALSE}
+```{r community, echo = FALSE, warning = FALSE, message = FALSE}
+names = c('com1.RDS', 'com2.RDS')
+if (sample == 1) {names = paste0('../output/s1_', names) }else { names = paste0('../output/s2_', names) }
+color <- factor(dt$Q16_2)
 color <- factor(dt$Q16_5)
-p1 <- readRDS("../output/com1.RDS")
-p2 <- readRDS("../output/com2.RDS")
+p1 <- readRDS(names[1])
+p2 <- readRDS(names[2])
 fancy_graph(p1, p2, dd$variable_name[grep('Q16_5', dd$Variable)], color)
 ```
 
 ```{r correlations3, echo = FALSE, warnings = FALSE}
-table3[1:2] %>%
-  kable() %>%
-  kable_styling() %>%
-  row_spec(c(2,7), bold = T, background = "yellow")
+if (sample == 1) {
+  table3[c(1:7), 1:2] %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(2,3, 7), bold = T, background = "yellow")
+} else {
+  table3[c(1:7), 1:2] %>%
+    kable() %>%
+    kable_styling()
+}
 ```
 
 
 Q20_1 = `r dd$Question[grep('Q20_1', dd$Variable)]` 
-(lower scores = higher rank)
+(lower scores = higher rank)  
+**Q20_1 is not significant in replication sample.**  
 
-```{r work2, echo = FALSE, warning = FALSE}
-color <- factor(dt$Q20_1)
-p1 <- readRDS("../output/vw1.RDS")
-p2 <- readRDS("../output/vw2.RDS")
-fancy_graph(p1, p2, dd$variable_name[grep('Q20_1', dd$Variable)], color)
-```
+Q20_2 = `r dd$Question[grep('Q20_2', dd$Variable)]`  
+**Q20_2 is not significant in replication sample**  
 
 Q20_6 = `r dd$Question[grep('Q20_6', dd$Variable)]` 
-(lower scores = higher rank)
-
-```{r care, echo = FALSE, warning = FALSE}
-color <- factor(dt$Q20_6)
-p1 <- readRDS("../output/ec1.RDS")
-p2 <- readRDS("../output/ec2.RDS")
-fancy_graph(p1, p2, dd$variable_name[grep('Q20_6', dd$Variable)], color)
-```
+(lower scores = higher rank)  
+**Q20_6 is not significant in replication sample**  
 
 ```{r correlations4, echo = FALSE, warnings = FALSE}
-table4[1:2] %>%
-  kable() %>%
-  kable_styling() %>%
-  row_spec(c(2,3), bold = T, background = "yellow")
+if (sample == 1) {
+  table4[c(1:6), 1:2] %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(2,3), bold = T, background = "yellow")
+} else {
+  table4[c(1:6), 1:2] %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(2,3), bold = T, background = "yellow")
+}
 ```
 
 Q22_1 = `r dd$Question[grep('Q22_1', dd$Variable)]` 
 (lower scores = higher rank)
 
-```{r self, echo = FALSE, warning = FALSE}
+```{r self, echo = FALSE, warning = FALSE, message = FALSE}
+names = c('sh1.RDS', 'sh2.RDS')
+if (sample == 1) {names = paste0('../output/s1_', names) }else { names = paste0('../output/s2_', names) }
 color <- factor(dt$Q22_1)
-p1 <- readRDS("../output/sh1.RDS")
-p2 <- readRDS("../output/sh2.RDS")
+p1 <- readRDS(names[1])
+p2 <- readRDS(names[2])
 fancy_graph(p1, p2, dd$variable_name[grep('Q22_1', dd$Variable)], color)
 ```
 
@@ -147,9 +174,11 @@ fancy_graph(p1, p2, dd$variable_name[grep('Q22_1', dd$Variable)], color)
 Q22_2 = `r dd$Question[grep('Q22_2', dd$Variable)]` 
 (lower scores = higher rank)
 
-```{r famliy, echo = FALSE, warning = FALSE}
+```{r famliy, echo = FALSE, warning = FALSE, message = FALSE}
+names = c('fh1.RDS', 'fh2.RDS')
+if (sample == 1) {names = paste0('../output/s1_', names) }else { names = paste0('../output/s2_', names) }
 color <- factor(dt$Q22_2)
-p1 <- readRDS("../output/fh1.RDS")
-p2 <- readRDS("../output/fh2.RDS")
+p1 <- readRDS(names[1])
+p2 <- readRDS(names[2])
 fancy_graph(p1, p2, dd$variable_name[grep('Q22_2', dd$Variable)], color)
 ```
