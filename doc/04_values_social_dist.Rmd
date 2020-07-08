@@ -1,9 +1,11 @@
 ---
 title: "Values and Social Distancing"
 author: "Kendra Seaman"
-date: "5/29/2020"
+date:  "`r format(Sys.time(), '%B %d, %Y')`"
 output: html_document
 ---
+
+# Temporal Discounting Social Distancing Study `r sample`
 
 ```{r setup, include=FALSE}
 library(knitr)
@@ -18,42 +20,91 @@ source("../08_social_dist_correlations.R")
 Q169_1 = `r dd$Question[grep('Q169_1', dd$Variable)][1]`  
 
 ```{r money, echo = FALSE, warnings = FALSE}
-table1[c(2:10,14:16), c(1,12)] %>%
-  kable() %>%
-  kable_styling() %>%
-  row_spec(c(4, 11), bold = T, background = "yellow")
+if (sample == 1) {
+  table1[c(2:10,14:16), c(1,12)] %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(4, 11), bold = T, background = "yellow")
+} else {
+  table1[c(2:10,14:16), c(1,12)] %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(5, 8:11), bold = T, background = "yellow")
+}
 ```
 
 Q13 = `r dd$Question[grep('Q13', dd$Variable)][1]`  
 Q13 = `r dd$allowed_values[grep('Q13', dd$Variable)][1]`
 
-**People who rate money as being more important are more likely to be required to go to work.**
+People who rate money as being more important are more likely to be required to go to work.  **Does not replicate**  
+
+Q14 = `r dd$Question[grep('Q14', dd$Variable)][1]`  
+Q14 = `r dd$allowed_values[grep('Q14', dd$Variable)][1]`  
+
+**Replationship not found in primary sample.**
+
+Q24 = `r dd$Question[grep('Q24', dd$Variable)][1]`  
+Q24 = `r dd$allowed_values[grep('Q24', dd$Variable)][1]`  
+
+**Replationship not found in primary sample.**
+
+Q25 = `r dd$Question[grep('Q25', dd$Variable)][1]`  
+Q25 = `r dd$allowed_values[grep('Q25', dd$Variable)][1]`  
+
+**Replationship not found in primary sample.**
+
+SC0 = `r dd$Question[grep('SC0', dd$Variable)][1]`  
+
+**Replationship not found in primary sample.**
 
 SC1 = `r dd$Question[grep('SC1', dd$Variable)][1]`
 
 **People who rate money as being more important are more likely to experience more mental health symptoms.**
 
 ```{r money2, echo = FALSE, warnings = FALSE}
-table2[c(2:7), c(1,16)] %>%
-  kable() %>%
-  kable_styling() 
+if (sample == 1) {
+  table2[c(2:7), c(1,16)] %>%
+    kable() %>%
+    kable_styling() 
+} else {
+  table2[c(2:7), c(1,16)] %>%
+    kable() %>%
+    kable_styling() %>% 
+    row_spec(c(3,4), bold = T, background = "yellow")
+}
 ```
 
+Q16_3 = `r dd$Question[grep('Q16_3', dd$Variable)][1]`  
+Q16_3 = `r dd$allowed_values[grep('Q16_3', dd$Variable)][1]` 
+
+**Relationship not found in primary sample.**
+
+Q16_4 = `r dd$Question[grep('Q16_4', dd$Variable)][1]`  
+Q16_4 = `r dd$allowed_values[grep('Q16_4', dd$Variable)][1]` 
+
+**Relationship not found in primary sample.**
+
 ```{r money3, echo = FALSE, warnings = FALSE}
-table3[c(2:7), c(1,16)] %>%
-  kable() %>%
-  kable_styling() %>%
-  row_spec(c(2,6), bold = T, background = "yellow")
+if (sample == 1) {
+  table3[c(2:7), c(1,16)] %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(2,6), bold = T, background = "yellow")
+} else {
+  table3[c(2:7), c(1,16)] %>%
+    kable() %>%
+    kable_styling()
+}
 ```
 
 (lower scores = higher rank)  
 Q20_2 = `r dd$Question[grep('Q20_2', dd$Variable)]`  
 
-**People who rate money as being more important are less likely to highly rank having people visit to deliver essential items.**
+People who rate money as being more important are less likely to highly rank having people visit to deliver essential items.  **Did not replicate.**
 
 Q20_6 = `r dd$Question[grep('Q20_6', dd$Variable)]`  
 
-**People who rate money as being more important are more likely to highly rank having people visit for essential care.**
+People who rate money as being more important are more likely to highly rank having people visit for essential care.  **Did not replicate.**
 
 ```{r money4, echo = FALSE, warnings = FALSE}
 table4[c(2:6), c(1,8)] %>%
@@ -65,16 +116,33 @@ table4[c(2:6), c(1,8)] %>%
 Q169_2 = `r dd$Question[grep('Q169_2', dd$Variable)][1]`  
 
 ```{r social, echo = FALSE, warnings = FALSE}
-table1[c(2:10,14:16), c(1,13)] %>%
-  kable() %>%
-  kable_styling() %>%
-  row_spec(c(4), bold = T, background = "yellow")
+if (sample == 1) {
+  table1[c(2:10,14:16), c(1,13)] %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(4), bold = T, background = "yellow") 
+} else {
+  table1[c(2:10,14:16), c(1,13)] %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(8,10), bold = T, background = "yellow")   
+}
 ```
 
 Q13 = `r dd$Question[grep('Q13', dd$Variable)][1]`  
 Q13 = `r dd$allowed_values[grep('Q13', dd$Variable)][1]`
 
-**People who rate social contact as being more important are more likely to be required to go to work.**
+People who rate social contact as being more important are more likely to be required to go to work.  **Does not replicate.**
+
+Q24_1 = `r dd$Question[grep('Q24_1', dd$Variable)][1]`  
+Q24_1 = `r dd$allowed_values[grep('Q24_1', dd$Variable)][1]`
+
+**Relationship not found in primary sample.**
+
+SC0 = `r dd$Question[grep('SC0', dd$Variable)][1]`  
+SC0 = `r dd$allowed_values[grep('SC0', dd$Variable)][1]`
+
+**Relationship not found in primary sample.**
 
 ```{r social2, echo = FALSE, warnings = FALSE}
 table2[c(2:7), c(1,10)] %>%
@@ -83,27 +151,33 @@ table2[c(2:7), c(1,10)] %>%
 ```
 
 ```{r social3, echo = FALSE, warnings = FALSE}
-table3[c(2:7), c(1,10)] %>%
-  kable() %>%
-  kable_styling() %>%
-  row_spec(c(1:3,6), bold = T, background = "yellow")
+if (sample == 1) {
+  table3[c(2:7), c(1,10)] %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(1:3,6), bold = T, background = "yellow") 
+} else {
+  table3[c(2:7), c(1,10)] %>%
+    kable() %>%
+    kable_styling()
+}
 ```
 
 Q20_1 = `r dd$Question[grep('Q20_1', dd$Variable)]`  
 
-**People who rate social contact as being more importantare less likely to highly rank having people visit for work.**
+People who rate social contact as being more importantare less likely to highly rank having people visit for work.  **Does not replicate.**
 
 Q20_2 = `r dd$Question[grep('Q20_2', dd$Variable)]` 
 
-**People who rate social contact as being more importantare less likely to highly ranke having people visit to deliver essential items.**
+People who rate social contact as being more importantare less likely to highly ranke having people visit to deliver essential items.  **Does not replicate.**
 
 Q20_3 = `r dd$Question[grep('Q20_3', dd$Variable)]`  
 
-**People who rate social contact as being more important are more likely to highly rank having people visit for social contact.**
+People who rate social contact as being more important are more likely to highly rank having people visit for social contact.  **Does not replicate.**
 
 Q20_6 = `r dd$Question[grep('Q20_6', dd$Variable)]`  
 
-**People who rate social contact as being more important are more likely to highly rank having people visit for essential care.**
+People who rate social contact as being more important are more likely to highly rank having people visit for essential care.  **Does not replicate.**
 
 ```{r social4, echo = FALSE, warnings = FALSE}
 table4[c(2:6), c(1,9)] %>%
@@ -115,32 +189,55 @@ table4[c(2:6), c(1,9)] %>%
 Q169_3 = `r dd$Question[grep('Q169_3', dd$Variable)][1]`  
 
 ```{r health, echo = FALSE, warnings = FALSE}
-table1[c(2:10,14:16), c(1,14)] %>%
-  kable() %>%
-  kable_styling() %>%
-  row_spec(c(1,8), bold = T, background = "yellow")
+if (sample == 1) {
+  table1[c(2:10,14:16), c(1,14)] %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(1,8), bold = T, background = "yellow")
+} else {
+  table1[c(2:10,14:16), c(1,14)] %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(7,8, 10), bold = T, background = "yellow")
+}
 ```
 
 Q10 = `r dd$Question[grep('Q10', dd$Variable)][1]`  
 Q10 = `r dd$allowed_values[grep('Q10', dd$Variable)][1]`
 
-**People who rate health improvement as being more important are more likely to have COVID-19 (or sympotoms).**
+People who rate health improvement as being more important are more likely to have COVID-19 (or sympotoms).  **Does not replicate.**
+
+Q23_1 = `r dd$Question[grep('Q23_1', dd$Variable)][1]`  
+Q23_1 = `r dd$allowed_values[grep('Q23_1', dd$Variable)][1]`
+
+**Relationship not found in primary sample.**  
 
 Q24_1 = `r dd$Question[grep('Q24_1', dd$Variable)][1]`  
 Q24_1 = `r dd$allowed_values[grep('Q24_1', dd$Variable)][1]`
 
-**People who rate health improvement as being more important are more worried about catching COVID-19.**
+**People who rate health improvement as being more important are more worried about catching COVID-19. This replicates.**
+
+SC0 = `r dd$Question[grep('SC0', dd$Variable)][1]`  
+SC0 = `r dd$allowed_values[grep('SC0', dd$Variable)][1]`
+
+**Relationship not found in primary sample.**  
 
 ```{r health2, echo = FALSE, warnings = FALSE}
-table2[c(2:7), c(1,11)] %>%
-  kable() %>%
-  kable_styling() %>%
-  row_spec(c(3), bold = T, background = "yellow")
+if (sample == 1) {
+  table2[c(2:7), c(1,11)] %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(3), bold = T, background = "yellow")
+} else {
+  table2[c(2:7), c(1,11)] %>%
+    kable() %>%
+    kable_styling()
+}
 ```
 
 Q16_3 = `r dd$Question[grep('Q16_3', dd$Variable)][1]` 
 
-**People who rate health improvement as being more important are less likely to highly rank leaving for social contact.**
+People who rate health improvement as being more important are less likely to highly rank leaving for social contact.  **Does not replicate.**
 
 ```{r health3, echo = FALSE, warnings = FALSE}
 table3[c(2:7), c(1,11)] %>%
@@ -156,31 +253,59 @@ table4[c(2:6), c(1,10)] %>%
 
 ## Value Difference (Social - Health; valuediff) 
 ```{r diff, echo = FALSE, warnings = FALSE}
-table1[c(2:10,14:16), c(1,22)] %>%
-  kable() %>%
-  kable_styling() 
+if (sample == 1) {
+  table1[c(2:10,14:16), c(1,22)] %>%
+    kable() %>%
+    kable_styling() 
+} else {
+  table1[c(2:10,14:16), c(1,22)] %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(11), bold = T, background = "yellow")
+}
 ```
+
+SC1 = `r dd$Question[grep('SC1', dd$Variable)][1]` 
+
+**Relationship not present in primary sample.**
 
 ```{r diff2, echo = FALSE, warnings = FALSE}
-table2[c(2:7), c(1,16)] %>%
-  kable() %>%
-  kable_styling()
+if (sample == 1) {
+  table2[c(2:7), c(1,16)] %>%
+    kable() %>%
+    kable_styling()
+} else {
+  table2[c(2:7), c(1,16)] %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(3), bold = T, background = "yellow")
+}
 ```
 
+Q16_3 = `r dd$Question[grep('Q16_3', dd$Variable)][1]` 
+
+**Relationship not present in primary sample.**
+
 ```{r diff3, echo = FALSE, warnings = FALSE}
-table3[c(2:7), c(1,16)] %>%
-  kable() %>%
-  kable_styling() %>%
-  row_spec(c(2,6), bold = T, background = "yellow")
+if (sample == 1) {
+  table3[c(2:7), c(1,16)] %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(2,6), bold = T, background = "yellow")
+} else {
+  table3[c(2:7), c(1,16)] %>%
+    kable() %>%
+    kable_styling()
+  }
 ```
 
 Q20_2 = `r dd$Question[grep('Q20_2', dd$Variable)]` 
 
-**People who rate social contact as being more important than health are less likely to highly rank having people visit to deliver essential items.**
+People who rate social contact as being more important than health are less likely to highly rank having people visit to deliver essential items. **Does not replicate.**
 
 Q20_6 = `r dd$Question[grep('Q20_6', dd$Variable)]`  
 
-**People who rate social contact as being more important than health are more likely to highly rank having people visit for essential care.**
+People who rate social contact as being more important than health are more likely to highly rank having people visit for essential care. **Does not replicate.**
 
 ```{r diff4, echo = FALSE, warnings = FALSE}
 table4[c(2:6), c(1,15)] %>%

@@ -93,13 +93,13 @@ moneyuseplot
 
 Q2169_1 = `r dd$Question[grep('Q169_1', dd$Variable)]` 
 
-Mean importance of social contact is `r moneymean` on a scale from 0 (Not important) to 100 (Extremely important)
+Mean importance of social contact is `r moneymean`[`r mmCI[1]`, `r mmCI[2]`] on a scale from 0 (Not important) to 100 (Extremely important)
 
 ```{r money4, echo = FALSE}
 moneyimportplot
 ```
 
-Correlation between age and importance of money, r(`r moneycor$n[1,2]`) = `r moneycor$r[1,2]`, p = `r moneycor$P[1,2]`.
+Correlation between age and importance of money, r(`r moneycor$n[1,2]`) = `r round(moneycor$r[1,2], 3)`, 95% CI [`r round(moneyCI[1], 3)`, `r round(moneyCI[2], 3)`], p = `r round(moneycor$P[1,2], 3)`.
 
 ### Health 
 
@@ -130,13 +130,13 @@ Significant linear effect of age on health discounting, with older adults discou
 
 Q2169_2 = `r dd$Question[grep('Q169_2', dd$Variable)]` 
 
-Mean importance of social contact is `r healthmean` on a scale from 0 (Not important) to 100 (Extremely important)
+Mean importance of social contact is `r healthmean` [`r hmCI[1]`, `r hmCI[2]`] on a scale from 0 (Not important) to 100 (Extremely important)
 
 ```{r health4, echo = FALSE, warning = FALSE}
 healthimportplot
 ```
 
-Correlation between age and importance of health, r(`r healthcor$n[1,2]`) = `r healthcor$r[1,2]`, p = `r healthcor$P[1,2]`.
+Correlation between age and importance of health, r(`r healthcor$n[1,2]`) = `r round(healthcor$r[1,2], 3)`, 95% CI [`r round(healthCI[1], 3)`, `r round(healthCI[2], 3)`], p = `r round(healthcor$P[1,2], 3)`.
 
 ### Social
 
@@ -180,10 +180,10 @@ partplot
 
 Q2169_3 = `r dd$Question[grep('Q169_3', dd$Variable)]` 
 
-Mean importance of social contact is `r socialmean` on a scale from 0 (Not important) to 100 (Extremely important)
+Mean importance of social contact is `r socialmean` [`r smCI[1]`, `r smCI[2]`] on a scale from 0 (Not important) to 100 (Extremely important)
 
 ```{r social5, echo = FALSE, warnings = FALSE}
 socialimportplot
 ```
 
-Correlation between age and importance of social contact, r(`r socialcor$n[1,2]`) = `r socialcor$r[1,2]`, p = `r socialcor$P[1,2]`.
+Correlation between age and importance of social contact, r(`r socialcor$n[1,2]`) = `r round(socialcor$r[1,2], 3)`, 95% CI [`r round(socialCI[1], 3)`, `r round(socialCI[2], 3)`],  p = `r round(socialcor$P[1,2], 3)`.

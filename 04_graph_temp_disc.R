@@ -11,6 +11,8 @@ library(Hmisc)
 # load source functions
 source(here::here("scr", "td_wide_to_long.R"))
 source(here::here("scr", "SummarySE.R"))
+source(here::here("scr", "CIcorr.R"))
+source(here::here("scr", "CImean.R"))
 
 # set hard-coded variables
 
@@ -99,14 +101,18 @@ moneyimportplot <- ggplot(dt, aes(Age, moneyimport)) + geom_point(color = "#F876
   annotate(geom = 'text', x = 80 , y = 0, label = "Not important") +  annotate(geom = 'text', x = 75 , y = 100, label = "Extremely important") 
 moneyimportplot
 moneycor = rcorr(dt$Age, dt$moneyimport)
+moneyCI <- CIcorr(0.05, moneycor$r[2], 0, nrow(dt))
 moneymean = mean(dt$moneyimport)
+mmCI <- CImean(a = moneymean, s = sd(dt$moneyimport), n =  nrow(dt))
 
 socialimportplot <- ggplot(dt, aes(Age, socialimport)) + geom_point(color = "#619CFF") + 
   geom_smooth(method = lm, fill = "#619CFF", color = "#619CFF") + theme_minimal() + theme(legend.position = 'none') + ylab('') + 
   annotate(geom = 'text', x = 80 , y = 0, label = "Not important") +  annotate(geom = 'text', x = 75 , y = 100, label = "Extremely important") 
 socialimportplot
 socialcor = rcorr(dt$Age, dt$socialimport)
+socialCI <- CIcorr(0.05, socialcor$r[2], 0, nrow(dt))
 socialmean = mean(dt$socialimport)
+smCI <- CImean(a = socialmean, s = sd(dt$socialimport), n =  nrow(dt))
 
 
 healthimportplot <- ggplot(dt, aes(Age, healthimport)) + geom_point(color = "#00BA38") + 
@@ -114,7 +120,9 @@ healthimportplot <- ggplot(dt, aes(Age, healthimport)) + geom_point(color = "#00
   annotate(geom = 'text', x = 80 , y = 0, label = "Not important") +  annotate(geom = 'text', x = 75 , y = 100, label = "Extremely important")  
 healthimportplot
 healthcor = rcorr(dt$Age, dt$healthimport)
+healthCI <- CIcorr(0.05, healthcor$r[2], 0, nrow(dt))
 healthmean = mean(dt$healthimport)
+hmCI <- CImean(a = healthmean, s = sd(dt$healthimport), n =  nrow(dt))
 
 # clean up
 # rm(td_x_age, td_means, socialimportplot, partplot, moneyuseplot, moneyimportplot, healthimportplot, 

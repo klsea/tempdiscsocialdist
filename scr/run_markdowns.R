@@ -10,8 +10,14 @@ for (sample in 1:2) {
   # rmarkdown::render(here::here('doc', '01_temp_disc.Rmd'),
   #                   output_file = paste0('01_temp_disc_S', sample, '.html'),
   #                   output_dir = here::here('doc'))
-  rmarkdown::render(here::here('doc', '02_social_dist.Rmd'),
-                    output_file = paste0('02_social_dist_S', sample, '.html'),
+  # rmarkdown::render(here::here('doc', '02_social_dist.Rmd'),
+  #                   output_file = paste0('02_social_dist_S', sample, '.html'),
+  #                   output_dir = here::here('doc'))
+  rmarkdown::render(here::here('doc', '03_temp_disc_social_dist.Rmd'),
+                    output_file = paste0('03_temp_disc_social_dist_S', sample, '.html'),
+                    output_dir = here::here('doc'))
+  rmarkdown::render(here::here('doc', '04_values_social_dist.Rmd'),
+                    output_file = paste0('04_values_social_dist_S', sample, '.html'),
                     output_dir = here::here('doc'))
 }
 
