@@ -83,10 +83,18 @@ fu_social
 # graph means
 d1 <- summarySE(dt, 'propImmediate', groupvars = c('sample', 'domain'))
 
-ggplot(d1, aes(x = domain, y = propImmediate, colour = sample, fill = sample)) + 
+td_x_sample <- ggplot(d1, aes(x = domain, y = propImmediate, colour = sample, fill = sample)) + 
   geom_bar(position=position_dodge(), stat="identity") +
   geom_errorbar(aes(ymin = propImmediate - se, ymax = propImmediate + se), width = .2, position = position_dodge(.9)) + 
-  scale_fill_brewer(palette="Set2") + scale_colour_brewer(palette="Set2") + 
-  theme_minimal() + theme(legend.position = 'top') + xlab('Reward domain') + ylab('Proportion of Smaller, Sooner Choices')
+  scale_fill_brewer(palette="Dark2") + scale_colour_brewer(palette="Dark2") + 
+  theme_minimal() + theme(legend.position = 'top', plot.title = element_text(face="bold", size = 20), 
+      axis.title.x = element_text(size = 20), axis.title.y = element_text(size = 20), 
+      axis.text.x = element_text(size = 16), axis.text.y = element_text(size = 16), 
+      strip.text.x = element_text(size=16), legend.title = element_text(size = 20), 
+      legend.text = element_text(size = 16)) + xlab('Reward domain') + 
+  ylab('Proportion of Smaller, Sooner Choices')
 
+png(file = here::here('figs', 'td_x_sample.png'), width = 500, height = 500)
+td_x_sample
+dev.off()
        
