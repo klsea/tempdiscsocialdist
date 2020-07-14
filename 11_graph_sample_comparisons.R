@@ -34,12 +34,24 @@ td_x_sample
 dev.off()
 
 # raincloud plot
-dt$domain <- factor(dt$domain, levels = c("Money", "Social", "Health"))
-ggplot(dt, aes(x = domain, y = propImmediate, colour = sample, fill = sample)) + 
-  geom_flat_violin(alpha=.3, position = position_nudge(x = .2, y = 0), adjust =2) + 
+dt$domain <- factor(dt$domain, levels = c("Money", "Health", "Social"))
+dt$sample <- factor(dt$sample, levels = c('Replication', 'Primary', 'Original'))
+td_x_sample_rain <- ggplot(dt, aes(x = sample, y = propImmediate, colour = sample, fill = sample)) + 
+  geom_flat_violin(alpha=.75, position = position_nudge(x = .2, y = 0), adjust =2) + 
   geom_point(position = position_jitter(width = .15), size = .25) +
   geom_boxplot(outlier.shape = NA, alpha = 0.3, width = .1, colour = "BLACK") +
-  theme_minimal() + theme(legend.position = 'top') + xlab('Reward domain') + 
-  ylab('Proportion of Smaller, Sooner Choices') + coord_flip() + facet_wrap(. ~ sample)
+  theme_minimal() + xlab('Reward domain') + 
+  scale_fill_manual(values=c("#CC0066", "#990066", "gray")) + 
+  scale_colour_manual(values=c("#CC0066", "#990066", "gray")) +
+  ylab('Proportion of Smaller, Sooner Choices') + coord_flip() + 
+  theme(legend.position = 'none', plot.title = element_text(face="bold", size = 20), 
+        axis.title.x = element_text(size = 20), axis.title.y = element_text(size = 20), 
+        axis.text.x = element_text(size = 16), axis.text.y = element_text(size = 16), 
+        strip.text.x = element_text(size=16), legend.title = element_text(size = 20), 
+        legend.text = element_text(size = 16)) + 
+  facet_wrap(. ~ domain)
 
+png(file = here::here('figs', 'td_x_sample_rain.png'), width = 750, height = 500)
+td_x_sample_rail
+dev.off()
  
