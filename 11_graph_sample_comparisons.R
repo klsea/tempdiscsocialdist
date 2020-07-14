@@ -51,7 +51,7 @@ td_x_sample_rain <- ggplot(dt, aes(x = sample, y = propImmediate, colour = sampl
         legend.text = element_text(size = 16)) + 
   facet_wrap(. ~ domain)
 
-png(file = here::here('figs', 'td_x_sample_rain.png'), width = 750, height = 500)
-td_x_sample_rail
+png(file = here::here('figs', 'td_x_sample_rain.png'), width = 1000, height = 750)
+td_x_sample_rain
 dev.off()
  
