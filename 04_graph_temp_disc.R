@@ -33,8 +33,8 @@ d1 <- td_wide_to_long(dt)
 
 td_x_age <- ggplot(d1, aes(Age, propChoice)) + geom_point(aes(color = domain)) + geom_smooth(method=lm, color = "black") + 
   geom_smooth(method = "lm", formula = y ~ x + I(x^2), aes(color = domain, fill = domain )) +
-  facet_grid(.~ domain) +theme_minimal() + theme(legend.position="none") + 
-  ylab('Proportion of Smaller, Sooner Choices') + ggtitle(plottitle) + 
+  facet_grid(.~ domain) + theme_minimal() + theme(legend.position="none") + 
+  ylab('Proportion of Smaller, \nSooner Choices') + ggtitle(plottitle) + 
   theme(plot.title = element_text(face="bold", size = 20), 
         axis.title.x = element_text(size = 20), axis.title.y = element_text(size = 20), 
         axis.text.x = element_text(size = 16), axis.text.y = element_text(size = 16), 

@@ -34,3 +34,13 @@ fu <- d1 %>%
 fu
 
 #rm(dt, d1, fu, m1, td_wide_to_long)
+
+# repeated-measures ANCOVA with race
+d1$Race <- factor(dt$Q6)
+d1$Q6 <- NULL
+levels(d1$Race)[levels(d1$Race) == 1] <- 'White/Caucasian'
+levels(d1$Race)[levels(d1$Race) == 2] <- 'Black/African American'
+levels(d1$Race)[levels(d1$Race) == 4] <- 'Hapanic/Latinx'
+
+m2 <- anova_test(data = d1, dv = propChoice, wid = ID, within = domain, between = Race, covariate = Age)
+m2

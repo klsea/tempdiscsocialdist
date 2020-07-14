@@ -32,7 +32,9 @@ models <- function(data) {
   m1 <- lm(propChoice ~ Age, data = data)
   m2 <- lm(propChoice ~ Age2, data = data)
   m3 <- lm(propChoice ~ Age + Age2, data = data)
-  return(list(m1, m2, m3))
+  m4 <- lm(propChoice ~ Age + Race, data = data)
+  m5 <- lm(propChoice ~ Age + Age2 + Race, data = data)
+  return(list(m1, m2, m3, m4, m5))
 }
 
 # Money
@@ -41,7 +43,9 @@ money_models <- models(d2)
 summary(money_models[[1]])
 summary(money_models[[2]])
 summary(money_models[[3]])
-# no effect of age
+summary(money_models[[4]])
+summary(money_models[[5]])
+# no effect of age or race
 
 # Health
 d4 <- d1[which(d1$domain == "Health"),] # health data only
@@ -49,6 +53,8 @@ health_models <- models(d4)
 summary(health_models[[1]])
 summary(health_models[[2]])
 summary(health_models[[3]])
+summary(health_models[[4]])
+summary(health_models[[5]])
 anova(health_models[[1]], health_models[[3]])
 #M1 wins!
 
@@ -58,6 +64,8 @@ social_models <- models(d3)
 summary(social_models[[1]])
 summary(social_models[[2]])
 summary(social_models[[3]])
+summary(social_models[[4]])
+summary(social_models[[5]])
 anova(social_models[[1]], social_models[[3]])
 anova(health_models[[2]], health_models[[3]])
 # M3 wins
