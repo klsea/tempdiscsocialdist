@@ -29,7 +29,7 @@ getmode <- function(v) {
 dt$Age <- dt$Q5
 ageplot <- ggplot(dt, aes(Age)) + geom_histogram(binwidth= 5, colour = 'black', fill = 'gray') + 
   scale_x_continuous(breaks=seq(18,88, by=5)) +
-  theme_minimal()
+  theme_minimal() 
 meanage <- mean(dt$Age)
 agerange <- range(dt$Age)
 
