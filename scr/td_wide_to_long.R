@@ -11,7 +11,7 @@ td_wide_to_long <- function(data) {
   
   d1$domain <- factor(d1$domain, levels = c('Money', 'Health', 'Social'))
   
-  d1$Race <- factor(dt$Q6); d1$Q6 <- NULL
+  d1$Race <- factor(d1$Q6); d1$Q6 <- NULL
   levels(d1$Race)[levels(d1$Race) == 1] <- 'White/Caucasian'
   levels(d1$Race)[levels(d1$Race) == 2] <- 'Black/African American'
   levels(d1$Race)[levels(d1$Race) == 4] <- 'Hispanic/Latinx'

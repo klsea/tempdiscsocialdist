@@ -22,13 +22,13 @@ s1 <- td_wide_to_long(s1)
 s1$propImmediate <- s1$propChoice / 42
 s1$sample <- 'Primary'
 s1$ID <- 1000 + s1$ID
-s1 <- s1[c(1, 6, 4, 2, 5)]
+s1 <- s1[c(1, 7, 4, 2, 6)]
 
 s2 <- td_wide_to_long(s2)
 s2$propImmediate <- s2$propChoice / 42
 s2$sample <- 'Replication'
 s2$ID <- 2000 + s2$ID
-s2 <- s2[c(1, 6, 4, 2, 5)]
+s2 <- s2[c(1, 7, 4, 2, 6)]
 
 # pull out relevant columns for PAG sample
 pag$sample <- 'Original'
