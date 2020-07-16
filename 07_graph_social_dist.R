@@ -90,8 +90,6 @@ p1 <- ggplot(dt, aes(Q5, Q16_2))
 p2 <- ggplot(dt, aes(Q16_2, fill = color))
 fancy_graph(p1, p2, paste0('Why leave? ', 
                            dd$variable_name[grep('Q16_2', dd$Variable)[[1]]]), color)
-saveRDS(p1, here::here('output', paste0(name, 'ei1.RDS')))
-saveRDS(p2, here::here('output', paste0(name, 'ei2.RDS')))
 
 color <- factor(dt$Q16_3)
 p1 <- ggplot(dt, aes(Q5, Q16_3)) 
@@ -137,8 +135,6 @@ p1 <- ggplot(dt, aes(Q5, Q20_1))
 p2 <- ggplot(dt, aes(Q20_1, fill = color))
 fancy_graph(p1, p2, paste0('Why have visitors? ', 
                            dd$variable_name[grep('Q20_1', dd$Variable)[[1]]]), color)
-saveRDS(p1, here::here('output', paste0(name, 'vw1.RDS')))
-saveRDS(p2, here::here('output', paste0(name, 'vw2.RDS')))
 
 color <- factor(dt$Q20_2)
 p1 <- ggplot(dt, aes(Q5, Q20_2)) 
@@ -175,8 +171,6 @@ p1 <- ggplot(dt, aes(Q5, Q20_6))
 p2 <- ggplot(dt, aes(Q20_6, fill = color))
 fancy_graph(p1, p2, paste0('Why have visitors? ', 
                            dd$variable_name[grep('Q20_6', dd$Variable)[[1]]]), color)
-saveRDS(p1, here::here('output', paste0(name, 'ec1.RDS')))
-saveRDS(p2, here::here('output', paste0(name, 'ec2.RDS')))
 
 color <- factor(dt$Q22_1)
 p1 <- ggplot(dt, aes(Q5, Q22_1)) 

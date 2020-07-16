@@ -146,4 +146,5 @@ d3 <- d3 %>% mutate(Q22_5_TEXT = recode(Q22_5_TEXT,
 d5 <- merge(d1,d2, by = 'ID')
 d5 <- merge(d5,d3, by = 'ID')
 
- 
+
+
