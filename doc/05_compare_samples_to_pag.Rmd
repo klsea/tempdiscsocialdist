@@ -1,0 +1,45 @@
+---
+title: "05_compare_samples_to_pag"
+author: "Kendra Seaman"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: html_document
+---
+
+# Temporal Discounting Social Distancing Study 
+
+```{r setup, include=FALSE}
+library(knitr)
+library(kableExtra)
+```
+
+```{r scripts, include = FALSE}
+source("../10_compare_to_pag.R")
+```
+
+```{r graph, echo = FALSE}
+readRDS('../output/td_x_sample_rain.RDS')
+```
+
+### Follow-up tests: Money
+```{r money, echo = FALSE}
+fu_money %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(1,2), bold = T, background = "yellow")
+```
+
+### Follow-up tests: Health
+```{r health, echo = FALSE}
+fu_health %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(1,2), bold = T, background = "yellow")
+```
+
+### Follow-up tests: Social
+```{r social, echo = FALSE}
+fu_social %>%
+    kable() %>%
+    kable_styling() %>%
+    row_spec(c(2), bold = T, background = "yellow")
+```

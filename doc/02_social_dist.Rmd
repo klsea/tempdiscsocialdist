@@ -108,16 +108,7 @@ lower scores = higher rank
 
 Q16_5 = `r dd$Question[grep('Q16_5', dd$Variable)]` 
 lower scores = higher rank
-
-```{r community, echo = FALSE, warning = FALSE, message = FALSE}
-names = c('com1.RDS', 'com2.RDS')
-if (sample == 1) {names = paste0('../output/s1_', names) }else { names = paste0('../output/s2_', names) }
-color <- factor(dt$Q16_2)
-color <- factor(dt$Q16_5)
-p1 <- readRDS(names[1])
-p2 <- readRDS(names[2])
-fancy_graph(p1, p2, dd$variable_name[grep('Q16_5', dd$Variable)], color)
-```
+**Q16_5's correlation with age is not significant in replication sample.**
 
 ```{r correlations3, echo = FALSE, warnings = FALSE}
 if (sample == 1) {

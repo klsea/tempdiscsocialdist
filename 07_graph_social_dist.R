@@ -6,6 +6,7 @@ library(here)
 library(tidyverse)
 library(ggplot2)
 library(plyr)
+library(gridExtra)
 
 # load source functions
 source(here::here("scr", "td_wide_to_long.R"))
@@ -17,9 +18,11 @@ source(here::here("scr", "multiplot.R"))
 if (sample == 1) {
   dt <- read.csv(here::here("data", "tdsd_s1_data.csv"))
   dd <- read.csv(here::here("data", 'tdsd_s1_data_dictionary.csv'), stringsAsFactors=FALSE)
+  plottitle <- 'Primary Sample'
 } else {
   dt <- read.csv(here::here("data", "tdsd_s2_data.csv"))
   dd <- read.csv(here::here("data", 'tdsd_s2_data_dictionary.csv'), stringsAsFactors=FALSE)
+  plottitle <- 'Replication Sample'
 }
 
 # create a function to make fancy graphs with histogram & age lined up
@@ -27,11 +30,25 @@ if (sample == 1) {
 fancy_graph <- function(plot1, plot2, ylabel, color_var) {
   g1 <- plot1 + geom_jitter(aes(color = color_var)) + geom_smooth(method=lm, color = "black") +
     theme_minimal() + theme(legend.position = 'none') +
-    ylab(ylabel) + xlab("Age")
+    ylab(ylabel) + xlab("Age") 
   g2 <- plot2 + geom_histogram(stat='count') + coord_flip() + 
     theme_minimal() + theme(legend.position = 'none', axis.title.y = element_blank(), 
                             axis.text.y = element_blank()) + xlab('Count') 
   multiplot(g1,g2, cols = 2)
+}
+
+fancy_graph_2 <- function(plot1, plot2, ylabel, color_var, width, plottitle) {
+  g1 <- plot1 + geom_jitter(aes(color = color_var)) + geom_smooth(method=lm, color = "black") +
+    theme_minimal() + ylab(ylabel) + xlab("Age") + ylim(-1,20) + 
+    theme(legend.position = 'none', axis.title.x = element_text(size = 20), 
+          axis.title.y = element_text(size = 20), axis.text.x = element_text(size = 16), 
+          axis.text.y = element_text(size = 16))
+  g2 <- plot2 + geom_histogram(stat='count') + coord_flip() + theme_minimal() + ylab('Count') +
+    theme(legend.position = 'none', axis.title.y = element_blank(), axis.text.y = element_blank(),  
+    axis.text.x = element_text(size = 16), axis.title.x = element_text(size = 20)) +
+    xlim(-1,20) + scale_y_continuous(breaks = c(0,25,50))
+  grid.arrange(g1,g2, nrow = 1, widths = c(width,1), 
+               top = grid::textGrob(plottitle, gp = grid::gpar(fontsize = 20, fontface="bold"), x = 0, hjust = 0))
 }
 
 # create name variable
@@ -232,3 +249,11 @@ saveRDS(p2, here::here('output', paste0(name, 'mh2.RDS')))
 
 #rm(p1, p2, color, fancy_graph, multiplot, td_wide_to_long, dd, dt, name)
 
+#mental health from pub
+color <- factor(dt$SC1)
+p1 <- ggplot(dt, aes(Q5, SC1)) 
+p2 <- ggplot(dt, aes(SC1, fill = color))
+plotname <- paste0('mental_health_study_', sample, '.png')
+png(file = here::here('figs', plotname), width = 450, height = 500)
+fancy_graph_2(p1, p2, 'Number of Mental Health \nSymptoms', color, 3, plottitle)
+dev.off()
