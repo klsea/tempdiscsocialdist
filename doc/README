@@ -1,0 +1,26 @@
+README
+
+Below is a description of each file inside this directory.
+
+00_Demo_data.Rmd - This markdown file generates the following .html files with graphs of basic demograph information.
+00_Demo_data_S1.html
+00_Demo_data_S2.html
+
+01_temp_disc.Rmd - This markdown file generates the .html files with graphs and stats related to temporal discounting.
+01_temp_disc_S1.html
+01_temp_disc_S2.html
+
+02_social_dist.Rmd - This markdown file generates the .html files with analysis and graphs related to social distancing and aging analysis.
+02_social_dist_S1.html
+02_social_dist_S2.html
+
+03_temp_disc_social_dist.Rmd - This markdown file generates the .html files with analysis graphs correlating temporal discounting and social distancing variables.
+03_temp_disc_social_dist_S1.html
+03_temp_disc_social_dist_S2.html
+
+04_values_social_dist.RMD - This markdown file generates the .html files with analysis and graphs correlating stated values and social distancing variables.
+04_values_social_dist_S1.html
+04_values_social_dist_S2.html
+
+05_compare_samples_to_pag.Rmd - This markdown file generates the following .html file comparing these samples to the original study published in Psychology and Aging (Seaman et al 2016).
+05_compare_samples_to_pag.html
