@@ -46,6 +46,10 @@ png(file = here::here('figs', plotname), width = 1000, height = 425)
 td_x_age
 dev.off()
 
+# svg file for presentations
+#plotname2 <- paste0('td_x_age_study_', sample, '.svg')
+#ggsave(file = here::here('figs', plotname2), plot = td_x_age, width = 8, height = 3.4)
+
 # graph td means
 td_means <- ggplot(d1, aes(domain, propChoice)) + geom_violin(trim = FALSE, aes(fill = domain)) + 
  geom_boxplot(width=0.1, fill = "white") + theme_minimal() + theme(legend.position = "none")

@@ -56,3 +56,6 @@ saveRDS(td_x_sample_rain, here::here('output', 'td_x_sample_rain.RDS'))
 # td_x_sample_rain
 # dev.off()
  
+# svg file for presentations
+ggsave(file = here::here('figs', 'td_x_sample_rain.svg'), plot = td_x_sample_rain, width = 10, height = 7.5)
+

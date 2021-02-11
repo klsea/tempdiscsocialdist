@@ -33,7 +33,8 @@ models <- function(data) {
   m2 <- lm(propChoice ~ Age2, data = data)
   m3 <- lm(propChoice ~ Age + Age2, data = data)
   m4 <- lm(propChoice ~ Age + Race, data = data)
-  m5 <- lm(propChoice ~ Age + Age2 + Race, data = data)
+  m5 <- lm(propChoice ~ Age * Race, data = data)
+  #m5 <- lm(propChoice ~ Age + Age2 + Race, data = data)
   return(list(m1, m2, m3, m4, m5))
 }
 
@@ -45,6 +46,8 @@ summary(money_models[[2]])
 summary(money_models[[3]])
 summary(money_models[[4]])
 summary(money_models[[5]])
+anova(money_models[[1]], money_models[[4]])  # add main effect of race 
+anova(money_models[[1]], money_models[[5]])  # add main effect of race + interaction with age 
 # no effect of age or race
 
 # Health
@@ -55,7 +58,9 @@ summary(health_models[[2]])
 summary(health_models[[3]])
 summary(health_models[[4]])
 summary(health_models[[5]])
-anova(health_models[[1]], health_models[[3]])
+anova(health_models[[1]], health_models[[3]]) 
+anova(health_models[[1]], health_models[[4]])  # add main effect of race
+anova(health_models[[1]], health_models[[5]]) # add main effect of race + interaction with age 
 #M1 wins!
 
 # Social
@@ -67,12 +72,20 @@ summary(social_models[[3]])
 summary(social_models[[4]])
 summary(social_models[[5]])
 anova(social_models[[1]], social_models[[3]])
-anova(health_models[[2]], health_models[[3]])
+anova(social_models[[2]], social_models[[3]])
+anova(social_models[[1]], social_models[[4]]) # add main effect of race
+anova(social_models[[1]], social_models[[5]]) # add main effect of race + interaction with age 
 # M3 wins
 
 tablename <- paste0('regressions_study_', sample, '.html')
 tab_model(money_models[[1]], money_models[[3]], health_models[[1]], health_models[[3]], social_models[[1]], social_models[[3]], 
           dv.labels = c("Money 1", "Money 2", "Health 1", "Health 2", "Social 1", "Social 2"), 
+          file = here::here('figs', tablename))
+
+#supplement
+tablename <- paste0('regressions_race_study_', sample, '.html')
+tab_model(money_models[[4]], money_models[[5]], health_models[[4]], health_models[[5]], social_models[[4]], social_models[[5]], 
+          dv.labels = c("Money 3", "Money 4", "Health 3", "Health 4", "Social 3", "Social 4"), 
           file = here::here('figs', tablename))
 
 #rm(d1, d2, d3, d4, dt, health_models, money_models, social_models, models, td_wide_to_long)
