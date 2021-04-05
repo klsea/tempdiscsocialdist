@@ -1,5 +1,5 @@
 # Compare to P&A 2016 data 
-# 7.13.20
+# 7.13.20 updated 4.5.21 with matching data
 
 # load required packages
 library(here)
@@ -14,8 +14,9 @@ source(here::here('scr', 'R_rainclouds.R'))
 
 # load data
 dt <- read.csv(here::here('output', 'all_three_samples.csv'))
+d1 <- read.csv(here::here('output', 'matching_samples.csv'))
 
-# graph means
+# graph means ####
 # d1 <- summarySE(dt, 'propImmediate', groupvars = c('sample', 'domain'))
 # 
 # td_x_sample <- ggplot(d1, aes(x = domain, y = propImmediate, colour = sample, fill = sample)) + 
@@ -33,7 +34,7 @@ dt <- read.csv(here::here('output', 'all_three_samples.csv'))
 # td_x_sample
 # dev.off()
 
-# raincloud plot
+# raincloud plot ####
 dt$domain <- factor(dt$domain, levels = c("Money", "Health", "Social"))
 dt$sample <- factor(dt$sample, levels = c('Replication', 'Primary', 'Original'))
 td_x_sample_rain <- ggplot(dt, aes(x = sample, y = propImmediate, colour = sample, fill = sample)) + 
@@ -55,7 +56,27 @@ saveRDS(td_x_sample_rain, here::here('output', 'td_x_sample_rain.RDS'))
 # png(file = here::here('figs', 'td_x_sample_rain.png'), width = 1000, height = 750)
 # td_x_sample_rain
 # dev.off()
- 
-# svg file for presentations
-ggsave(file = here::here('figs', 'td_x_sample_rain.svg'), plot = td_x_sample_rain, width = 10, height = 7.5)
 
+# raincloud for matching ####
+# svg file for presentations
+ggsave(file = here::here('figs', 'td_x_matching_rain.svg'), plot = td_x_sample_rain, width = 10, height = 7.5)
+
+d1$domain <- factor(d1$domain, levels = c("Money", "Health", "Social"))
+d1$sample <- factor(d1$sample, levels = c('Matching', 'Original'))
+td_x_matching_rain <- ggplot(d1, aes(x = sample, y = propImmediate, colour = sample, fill = sample)) + 
+  geom_flat_violin(alpha=.75, position = position_nudge(x = .2, y = 0), adjust =2) + 
+  geom_point(position = position_jitter(width = .15), size = .25) +
+  geom_boxplot(outlier.shape = NA, alpha = 0.3, width = .1, colour = "BLACK") +
+  theme_minimal() + xlab('Sample') + ggtitle('Reward Domain') +
+  scale_fill_manual(values=c("#CC0066", "#990066", "gray")) + 
+  scale_colour_manual(values=c("#CC0066", "#990066", "gray")) +
+  ylab('Proportion of Smaller, \nSooner Choices') + coord_flip() + 
+  theme(legend.position = 'none', plot.title = element_text(size = 20, hjust = 0.5), 
+        axis.title.x = element_text(size = 20), axis.title.y = element_text(size = 20), 
+        axis.text.x = element_text(size = 16), axis.text.y = element_text(size = 16), 
+        strip.text.x = element_text(size=16), legend.title = element_text(size = 20), 
+        legend.text = element_text(size = 16)) + 
+  scale_y_continuous(breaks = c(0, 0.5, 1)) + facet_wrap(. ~ domain)
+
+saveRDS(td_x_sample_rain, here::here('output', 'td_x_matching_rain.RDS'))
+# png(file = here::here('figs', 'td_x_sample_rain.png'), width = 1000, hei

@@ -1,0 +1,177 @@
+"","partNum","Sex","Ethnicity","Age","Education","Income"
+"47",1047,"M","White/Caucasian",21,16,3
+"111",1111,"F","Black/African American",24,16,6
+"51",1051,"M","Black/African American",27,16,3
+"251",2018,"M","White/Caucasian",41,16,10
+"273",2040,"M","Black/African American",52,21,4
+"319",2086,"F","White/Caucasian",45,14,10
+"2",1002,"M","White/Caucasian",60,16,3
+"392",2159,"F","Black/African American",31,16,6
+"84",1084,"F","White/Caucasian",73,16,6
+"78",1078,"F","White/Caucasian",48,16,10
+"46",1046,"M","Black/African American",36,16,8
+"88",1088,"F","White/Caucasian",59,14,9
+"234",2001,"M","White/Caucasian",68,14,7
+"71",1071,"F","White/Caucasian",49,14,8
+"28",1028,"M","White/Caucasian",40,21,10
+"242",2009,"F","White/Caucasian",40,16,4
+"345",2112,"F","White/Caucasian",35,16,7
+"336",2103,"F","White/Caucasian",55,16,5
+"352",2119,"F","White/Caucasian",52,16,3
+"73",1073,"F","White/Caucasian",45,16,5
+"40",1040,"M","White/Caucasian",19,16,10
+"115",1115,"F","Black/African American",46,12,3
+"253",2020,"M","White/Caucasian",45,18,10
+"16",1016,"M","White/Caucasian",30,18,8
+"95",1095,"F","White/Caucasian",31,16,10
+"17",1017,"M","White/Caucasian",30,18,10
+"77",1077,"F","White/Caucasian",56,18,4
+"337",2104,"F","White/Caucasian",26,18,5
+"161",1161,"F","Hispanic/Latino",26,16,6
+"103",1103,"F","White/Caucasian",27,16,5
+"79",1079,"F","White/Caucasian",69,16,6
+"236",2003,"F","White/Caucasian",33,16,5
+"247",2014,"M","White/Caucasian",35,21,8
+"290",2057,"M","White/Caucasian",38,16,8
+"14",1014,"F","White/Caucasian",67,18,4
+"30",1030,"M","White/Caucasian",37,18,10
+"82",1082,"F","White/Caucasian",56,18,5
+"448",2215,"M","White/Caucasian",80,16,3
+"328",2095,"F","White/Caucasian",54,12,7
+"20",1020,"M","White/Caucasian",50,18,3
+"323",2090,"F","White/Caucasian",67,14,8
+"8",1008,"F","White/Caucasian",68,14,9
+"298",2065,"M","White/Caucasian",53,18,5
+"322",2089,"F","White/Caucasian",72,14,4
+"349",2116,"F","White/Caucasian",29,14,8
+"107",1107,"F","Black/African American",66,16,10
+"343",2110,"F","White/Caucasian",61,14,9
+"76",1076,"F","White/Caucasian",66,16,3
+"333",2100,"F","White/Caucasian",73,12,3
+"344",2111,"F","White/Caucasian",80,12,5
+"331",2098,"F","White/Caucasian",71,16,3
+"351",2118,"F","White/Caucasian",60,18,5
+"295",2062,"M","White/Caucasian",80,12,6
+"353",2120,"F","White/Caucasian",50,14,3
+"80",1080,"F","White/Caucasian",64,16,10
+"355",2122,"M","White/Caucasian",84,16,3
+"18",1018,"M","White/Caucasian",67,16,4
+"339",2106,"F","White/Caucasian",70,16,4
+"147",1147,"F","Black/African American",53,12,3
+"341",2108,"F","White/Caucasian",58,16,10
+"325",2092,"F","White/Caucasian",74,16,10
+"254",2021,"M","White/Caucasian",34,18,9
+"316",2083,"F","White/Caucasian",53,14,4
+"37",1037,"M","White/Caucasian",23,12,8
+"70",1070,"F","White/Caucasian",69,16,7
+"318",2085,"F","White/Caucasian",64,18,8
+"15",1015,"F","White/Caucasian",35,21,8
+"49",1049,"M","White/Caucasian",77,21,6
+"338",2105,"F","White/Caucasian",28,21,9
+"119",1119,"M","White/Caucasian",84,21,7
+"284",2051,"M","White/Caucasian",72,18,10
+"23",1023,"M","White/Caucasian",44,18,10
+"65",1065,"M","Black/African American",25,16,4
+"332",2099,"F","White/Caucasian",48,14,5
+"226",1226,"M","Black/African American",40,21,10
+"285",2052,"M","Black/African American",66,16,3
+"5",1005,"F","White/Caucasian",30,16,10
+"335",2102,"F","White/Caucasian",40,18,10
+"75",1075,"F","White/Caucasian",53,16,9
+"117",1117,"M","White/Caucasian",86,18,6
+"13",1013,"F","White/Caucasian",84,12,8
+"53",1053,"M","White/Caucasian",73,14,6
+"269",2036,"M","White/Caucasian",70,16,5
+"450",2217,"F","White/Caucasian",81,12,10
+"36",1036,"M","White/Caucasian",40,18,10
+"340",2107,"F","White/Caucasian",37,12,7
+"153",1153,"F","Black/African American",67,14,3
+"21",1021,"M","White/Caucasian",39,18,10
+"1",2,"M","White/Caucasian",22,16,1
+"10",3,"F","Black/African American",23,16,6
+"19",5,"M","Black/African American",22,16,2
+"281",7,"M","White/Caucasian",32,16,10
+"461",9,"M","Black/African American",34,18,2
+"55",12,"F","White/Caucasian",46,14,10
+"64",13,"M","White/Caucasian",58,14,2
+"731",15,"F","Black/African American",35,16,6
+"821",16,"F","White/Caucasian",80,16,6
+"91",19,"F","White/Caucasian",48,16,10
+"100",20,"M","Black/African American",34,16,8
+"109",21,"F","White/Caucasian",54,12,9
+"118",27,"M","White/Caucasian",62,16,9
+"127",28,"F","White/Caucasian",43,14,10
+"136",31,"M","White/Caucasian",40,21,10
+"145",32,"F","White/Caucasian",31,16,2
+"154",34,"F","White/Caucasian",46,16,7
+"163",35,"F","White/Caucasian",57,16,4
+"172",36,"F","White/Caucasian",43,16,2
+"181",38,"F","White/Caucasian",46,16,4
+"190",41,"M","White/Caucasian",42,14,10
+"199",42,"F","Black/African American",48,12,1
+"208",44,"M","White/Caucasian",48,18,10
+"217",45,"M","White/Caucasian",40,18,8
+"235",48,"F","White/Caucasian",40,16,10
+"244",49,"M","White/Caucasian",25,18,10
+"2531",52,"F","White/Caucasian",59,18,1
+"262",53,"F","White/Caucasian",27,18,6
+"271",61,"F","Hispanic/Latino",23,16,6
+"280",62,"F","White/Caucasian",32,16,3
+"2981",65,"F","White/Caucasian",77,16,6
+"307",66,"F","White/Caucasian",26,16,6
+"3161",67,"M","White/Caucasian",28,21,8
+"3251",68,"M","White/Caucasian",26,16,9
+"334",71,"F","White/Caucasian",55,18,2
+"3431",73,"M","White/Caucasian",30,16,10
+"3521",75,"F","White/Caucasian",26,21,2
+"361",77,"M","White/Caucasian",81,18,3
+"370",81,"F","White/Caucasian",67,12,6
+"379",82,"M","White/Caucasian",34,18,2
+"388",86,"F","White/Caucasian",73,14,8
+"397",88,"F","White/Caucasian",65,14,9
+"406",90,"M","White/Caucasian",50,16,3
+"415",91,"F","White/Caucasian",71,14,3
+"424",92,"F","White/Caucasian",36,14,9
+"433",93,"F","Black/African American",66,16,10
+"442",96,"F","White/Caucasian",55,14,10
+"451",97,"F","White/Caucasian",53,16,4
+"460",100,"F","White/Caucasian",62,12,3
+"469",101,"F","White/Caucasian",78,12,6
+"478",103,"F","White/Caucasian",63,16,2
+"487",106,"F","White/Caucasian",65,18,2
+"496",107,"M","White/Caucasian",75,12,8
+"505",109,"F","White/Caucasian",54,16,2
+"514",111,"F","White/Caucasian",61,14,10
+"523",115,"M","White/Caucasian",59,18,2
+"532",116,"M","White/Caucasian",62,16,2
+"541",119,"F","White/Caucasian",59,16,3
+"550",120,"F","Black/African American",57,12,3
+"559",123,"F","White/Caucasian",57,16,10
+"568",126,"F","White/Caucasian",65,14,10
+"577",128,"M","White/Caucasian",32,16,8
+"586",129,"F","White/Caucasian",32,18,3
+"595",131,"M","White/Caucasian",52,12,9
+"604",134,"F","White/Caucasian",71,16,8
+"613",136,"F","White/Caucasian",70,18,8
+"622",138,"F","White/Caucasian",25,21,1
+"631",139,"M","White/Caucasian",44,21,2
+"640",140,"F","White/Caucasian",32,21,9
+"649",141,"M","White/Caucasian",72,18,4
+"658",142,"M","White/Caucasian",74,12,8
+"667",145,"M","White/Caucasian",60,16,9
+"676",146,"M","Black/African American",23,16,2
+"685",147,"F","White/Caucasian",48,16,5
+"694",149,"M","Black/African American",37,21,10
+"703",150,"M","Black/African American",50,16,2
+"712",151,"F","White/Caucasian",33,16,10
+"721",152,"F","White/Caucasian",26,16,9
+"730",153,"F","White/Caucasian",37,14,10
+"739",154,"M","White/Caucasian",79,21,1
+"757",158,"F","White/Caucasian",83,12,8
+"766",161,"M","White/Caucasian",71,16,8
+"775",162,"M","White/Caucasian",65,16,4
+"784",163,"F","White/Caucasian",72,12,10
+"793",165,"M","White/Caucasian",77,12,10
+"802",166,"F","White/Caucasian",76,12,9
+"811",167,"F","Black/African American",64,14,3
+"820",168,"M","White/Caucasian",58,14,8

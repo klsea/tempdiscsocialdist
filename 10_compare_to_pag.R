@@ -1,5 +1,7 @@
 # Compare to P&A 2016 data 
-# 7.7.20
+# 7.7.20 updated 4.5.21 with matching data
+
+#Comment out rows 53-54 if running all data 
 
 # load required packages
 library(here)
@@ -16,7 +18,8 @@ source(here::here("scr", "td_wide_to_long.R"))
 s1 <- read.csv(here::here("data", "tdsd_s1_data.csv"))
 s2 <- read.csv(here::here("data", "tdsd_s2_data.csv"))
 pag <- read.csv(here::here("data", "all_sublevel_data.csv"))
-
+match <- read.csv(here::here("output", "matching_data_table.csv"))
+  
 # calculate propImmediate for new samples
 s1 <- td_wide_to_long(s1)
 s1$propImmediate <- s1$propChoice / 42
@@ -40,13 +43,18 @@ pag$domain[which(pag$domain == 'money')] <- 'Money'
 pag$domain[which(pag$domain == 'health')] <- 'Health'
 pag$domain[which(pag$domain == 'social')] <- 'Social'
 
-# concatenate all data sets and save
+# concatenate all data sets and save ####
 dt <- rbind(s1, s2)
 dt <- rbind(dt, pag)
 rm(s1, s2, pag)
 write.csv(dt, here::here('output', 'all_three_samples.csv'))
 
-# 3 Sample (Original, Sample 1, Sample 2) x 3 Reward Domain (Money, Health, Social) 
+# alternate code for matching analysis ####
+dt <- dt[which(dt$ID %in% match$partNum),]
+dt$sample <- mapvalues(dt$sample, from = c("Primary", "Replication"), to = c("Matching", "Matching"))
+write.csv(dt, here::here('output', 'matching_samples.csv'))
+
+# 3 Sample (Original, Sample 1, Sample 2) x 3 Reward Domain (Money, Health, Social) ####
 # repeated-measures ANCOVA
 m1 <- anova_test(data = dt, dv = propImmediate, wid = ID, between = sample, within = domain, covariate = Age)
 m1
