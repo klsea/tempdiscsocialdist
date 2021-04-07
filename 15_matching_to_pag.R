@@ -4,6 +4,7 @@
 # load required packages
 library(here)
 library(tidyverse)
+library(plyr)
 library(StatMatch)
 
 # load source functions
@@ -88,3 +89,13 @@ for (row in 1:nrow(pag)) {
 fdt <- rbind(cdt, pag)
 
 write.csv(fdt, here::here('output', 'matching_data_table.csv'))
+
+# group means
+# pre-pandemic 2016
+table(pag$Sex)
+table(pag$Ethnicity)
+colMeans(pag[4:6])
+# pandemic 2021
+table(cdt$Sex)
+table(cdt$Ethnicity)
+colMeans(cdt[4:6])

@@ -6,6 +6,7 @@
 # load required packages
 library(here)
 library(tidyverse)
+library(plyr)
 library(rstatix)
 library(ggplot2)
 
@@ -56,7 +57,7 @@ write.csv(dt, here::here('output', 'matching_samples.csv'))
 
 # 3 Sample (Original, Sample 1, Sample 2) x 3 Reward Domain (Money, Health, Social) ####
 # repeated-measures ANCOVA
-m1 <- anova_test(data = dt, dv = propImmediate, wid = ID, between = sample, within = domain, covariate = Age)
+m1 <- anova_test(data = dt, dv = propImmediate, wid = ID, between = sample, within = domain, covariate = Age, effect.size = "pes",)
 m1
 
 # follow-up tests
