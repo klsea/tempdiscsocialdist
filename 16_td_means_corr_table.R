@@ -35,4 +35,8 @@ t1 <- data.frame(round(mean,2), round(sd, 2), corr)
 t1$meansd <- paste0(as.character(t1$round.mean..2.), ' (', as.character(t1$round.sd..2.), ')')
 t1 <- t1[c(7, 3:6)]
 
-write.csv(t1, here::here('figs', 'temp_disc_means_corr.csv'))
+tablename <- paste0('td_means_study_', sample, '.csv')
+
+write.csv(t1, here::here('figs', tablename))
+
+          

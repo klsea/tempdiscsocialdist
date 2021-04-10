@@ -51,13 +51,13 @@ rm(s1, s2, pag)
 write.csv(dt, here::here('output', 'all_three_samples.csv'))
 
 # alternate code for matching analysis ####
-dt <- dt[which(dt$ID %in% match$partNum),]
-dt$sample <- mapvalues(dt$sample, from = c("Primary", "Replication"), to = c("Matching", "Matching"))
-write.csv(dt, here::here('output', 'matching_samples.csv'))
+#dt <- dt[which(dt$ID %in% match$partNum),]
+#dt$sample <- mapvalues(dt$sample, from = c("Primary", "Replication"), to = c("Matching", "Matching"))
+#write.csv(dt, here::here('output', 'matching_samples.csv'))
 
 # 3 Sample (Original, Sample 1, Sample 2) x 3 Reward Domain (Money, Health, Social) ####
 # repeated-measures ANCOVA
-m1 <- anova_test(data = dt, dv = propImmediate, wid = ID, between = sample, within = domain, covariate = Age, effect.size = "pes",)
+m1 <- anova_test(data = dt, dv = propImmediate, wid = ID, between = sample, within = domain, covariate = Age, effect.size = "pes")
 m1
 
 # follow-up tests

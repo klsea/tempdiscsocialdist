@@ -31,6 +31,9 @@ if( sample == 1) {
 
 d1 <- td_wide_to_long(dt)
 
+# Make a proportion
+d1$propChoice <- d1$propChoice / 42
+
 # graph td x age
 td_x_age <- ggplot(d1, aes(Age, propChoice)) + geom_point(alpha=.75, color = plotcolor) + geom_smooth(method=lm, color = "black") + 
   geom_smooth(method = "lm", formula = y ~ x + I(x^2), color = plotcolor, fill = plotcolor, alpha=.3) +
