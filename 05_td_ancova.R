@@ -44,13 +44,13 @@ m3
 
 # repeated-measures ANCOVA with propChoice square transformed
 # repeated-measures ANCOVA
-m4 <- anova_test(data = d1, dv = tpropChoice, wid = ID, within = domain, covariate = Age, effect.size = "pes")
+m4 <- anova_test(data = d1, dv = tpropChoice, wid = ID, within = domain, covariate = sAge, effect.size = "pes")
 m4
 
 # follow-up tests
 fu <- d1 %>%
   pairwise_t_test(
-    propChoice ~ domain, paired = TRUE, 
+    tpropChoice ~ domain, paired = TRUE, 
     p.adjust.method = "bonferroni"
   )
 fu
@@ -64,5 +64,5 @@ levels(d1$Race)[levels(d1$Race) == 1] <- 'White/Caucasian'
 levels(d1$Race)[levels(d1$Race) == 2] <- 'Black/African American'
 levels(d1$Race)[levels(d1$Race) == 4] <- 'Hapanic/Latinx'
 
-m5 <- anova_test(data = d1, dv = propChoice, wid = ID, within = domain, between = Race, covariate = Age, effect.size = "pes")
+m5 <- anova_test(data = d1, dv = tpropChoice, wid = ID, within = domain, between = Race, covariate = Age, effect.size = "pes")
 m5

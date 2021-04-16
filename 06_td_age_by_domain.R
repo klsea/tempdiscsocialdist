@@ -28,15 +28,18 @@ d1$Age <- scale(d1$Age)
 d1$Age2 <- d1$Age^2
 d1$propChoice <- scale(d1$propChoice) # scale so standardized coefficients in output
 
+# add square transformed propChoice variable
+d1$tpropChoice <- d1$propChoice^2
+
 # regressions ####
 models <- function(data) {
   # this fits age and age2 regression models to subset of td data
-  m1 <- lm(propChoice ~ Age, data = data)
-  m2 <- lm(propChoice ~ Age2, data = data)
-  m3 <- lm(propChoice ~ Age + Age2, data = data)
-  m4 <- lm(propChoice ~ Age + Race, data = data)
-  m5 <- lm(propChoice ~ Age * Race, data = data)
-  #m5 <- lm(propChoice ~ Age + Age2 + Race, data = data)
+  m1 <- lm(tpropChoice ~ Age, data = data)
+  m2 <- lm(tpropChoice ~ Age2, data = data)
+  m3 <- lm(tpropChoice ~ Age + Age2, data = data)
+  m4 <- lm(tpropChoice ~ Age + Race, data = data)
+  m5 <- lm(tpropChoice ~ Age * Race, data = data)
+  #m5 <- lm(tpropChoice ~ Age + Age2 + Race, data = data)
   return(list(m1, m2, m3, m4, m5))
 }
 
